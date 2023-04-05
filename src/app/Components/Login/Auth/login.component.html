@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
+    <div class="card auth">
+      <div class="card-body auth-card">
+        <div class="auth-avatar">
+          <img src="../../../../assets/user.png" alt="user" class="user-image">
+        </div>
+        <form #loginFormulaire="ngForm" (submit)="login(loginFormulaire.value)">
+          <div class="form-group">
+            <label for="email">Email : </label>
+            <input type="text" email="true" name="email" ngModel class="form-control" #emailInput="ngModel" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password : </label>
+            <input type="password" required minlength="4" name="password" class="form-control" ngModel
+              class="form-control" #pwdInput="ngModel">
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-my" value="Login" [disabled]="(emailInput.invalid || pwdInput.invalid)"
+              (click)="loggerForm(loginFormulaire)">Login</button>
+          </div>
+          <br>
+          <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.dirty">
+            Your email is not valid !!
+          </div>
+
+          <div class="alert alert-danger" *ngIf="pwdInput.invalid && pwdInput.touched">
+            Password must be greater than 4 caracter !!
+          </div>
+
+        </form>
+        <div class="text-center sign-up">
+          Don`t have an account ? <a routerLink="/SubscriptionManagement/register">Sign Up</a> here.
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
