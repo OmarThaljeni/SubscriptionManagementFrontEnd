@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -27,8 +26,8 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('roles');
+    localStorage.removeItem('id_roles');
+    localStorage.removeItem('user_id');
   }
 
   getToken() {

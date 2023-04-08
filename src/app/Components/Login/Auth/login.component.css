@@ -18,3 +18,10 @@
     border-color: #BCE8F1;
     color: white;
 }
+
+.btn-my{
+  background-color: #d39e00;
+  border-color: #d39e00;
+  color: #fff;
+  width: 180px;
+}

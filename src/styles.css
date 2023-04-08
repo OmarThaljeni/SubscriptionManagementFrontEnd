@@ -1,9 +1,9 @@
 /* Add application styles & imports to this file! */
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
 @import url('../node_modules/simple-keyboard/build/css/index.css');
+
 body{
-  
-  background-color:#8d051c;
+  background-color:#ecdee0;
 }
 .auth-card{
   background: #c31432;  /* fallback for old browsers */
@@ -24,21 +24,18 @@ label{
   margin-top: -50px;
 }
 .auth{
-  margin-top: 110px;
+  margin-top:210px;
   border: none;
   border-radius: 6px;
 }
 .register{
-  margin-top: 20px;
+  margin-top:120px;
   border: none;
   border-radius: 10% 50%;
   background-position: 50% 50%;
 }
-.btn-my{
-  background-color: #d39e00;
-  border-color: #d39e00;
-  color: #fff;
-}
+
 .simple-keyboard {
   max-width: 850px;
 }
+

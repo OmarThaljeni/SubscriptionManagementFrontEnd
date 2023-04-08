@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/AuthService/login.service';
-import { NotificationService } from 'src/app/Services/Notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import { NotificationService } from 'src/app/Services/Notification/notification.
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder, private notificationService : NotificationService) {}
+  constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder) {}
   
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl(null, [
@@ -21,8 +20,7 @@ export class LoginComponent implements OnInit {
     ),
   ]);
 
-  ngOnInit(): void {
-      this.notificationService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });  
+  ngOnInit(): void {    
   }
 
   loginForm = this.formBuilder.group(
@@ -49,6 +47,10 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+
+
+
 
 
 

@@ -50,3 +50,10 @@ h2{
   color: white;
   position: relative;
 }
+
+.btn-my{
+  background-color: #d39e00;
+  border-color: #d39e00;
+  color: #fff;
+  width: 180px;
+}

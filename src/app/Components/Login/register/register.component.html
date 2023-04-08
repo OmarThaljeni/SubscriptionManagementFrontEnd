@@ -7,7 +7,7 @@
           <img src="../../../../assets/user.png" alt="user" class="user-image">
         </div>
 
-        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
 
           <div>
             <h2>User registration</h2>
@@ -16,13 +16,13 @@
           <div class="flex-parent-element">
 
             <div class="flex-child-element-firstname">
-              <label for="firstName">First name: </label>
-              <input id="firstName" type="text" class="form-control" placeholder="First name"
-                formControlName="firstName" #fir />
+              <label for="firstname">First name: </label>
+              <input id="firstname" type="text" class="form-control" placeholder="First name"
+                formControlName="firstname" #fir />
             </div>
             <div class="flex-child-element-lastname">
               <label for="lastName">Last name: </label>
-              <input id="lastName" type="text" class="form-control" placeholder="Last name" formControlName="lastName"
+              <input id="lastname" type="text" class="form-control" placeholder="Last name" formControlName="lastname"
                 #las />
             </div>
 
@@ -53,7 +53,7 @@
             <div class="flex-child-element-password">
               <label for="newPassword">Password: </label>
               <input (ngModelChange)="checkIdenticalPassword()" id="newPassword" type="password" class="form-control" placeholder="********"
-                formControlName="newPassword" #pw />
+                formControlName="password" #pw />
             </div>
 
             <div class="flex-child-element-confirm-password">
@@ -128,15 +128,15 @@
         </div>
 
 
-        <div *ngIf=" lastName.invalid && (lastName.dirty || lastName.touched) ">
-          <div class="alert alert-danger" *ngIf="lastName.errors?.['required']">
+        <div *ngIf=" lastname.invalid && (lastname.dirty || lastname.touched) ">
+          <div class="alert alert-danger" *ngIf="lastname.errors?.['required']">
             Last name is required
           </div>
         </div>
 
 
-        <div *ngIf=" firstName.invalid && (firstName.dirty || firstName.touched) ">
-          <div class="alert alert-light" *ngIf="firstName.errors?.['required']">
+        <div *ngIf=" firstname.invalid && (firstname.dirty || firstname.touched) ">
+          <div class="alert alert-light" *ngIf="firstname.errors?.['required']">
             First name is required
           </div>
         </div>

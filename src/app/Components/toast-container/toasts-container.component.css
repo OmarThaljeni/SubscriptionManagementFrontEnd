@@ -1,0 +1,11 @@
+:host {
+    position: absolute;
+    top: 0!important;
+    bottom: auto!important;
+    right: 0!important;
+    left: auto!important;
+    margin: 1em;
+    height:80%;
+    width:30%;
+}
+  

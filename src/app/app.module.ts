@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsContainerComponent } from './Components/toast-container/toasts-container.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    ToastsContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
