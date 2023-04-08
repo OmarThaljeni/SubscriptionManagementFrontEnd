@@ -8,17 +8,16 @@
         <form #loginFormulaire="ngForm" (submit)="login(loginFormulaire.value)">
           <div class="form-group">
             <label for="email">Email : </label>
-            <input type="text" email="true" name="email" ngModel class="form-control" #emailInput="ngModel" required>
+            <input type="text" email="true" name="email" ngModel class="form-control" #emailInput="ngModel" required placeholder="Email">
           </div>
 
           <div class="form-group">
             <label for="password">Password : </label>
             <input type="password" required minlength="4" name="password" class="form-control" ngModel
-              class="form-control" #pwdInput="ngModel">
+              class="form-control" #pwdInput="ngModel" placeholder="********">
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-my" value="Login" [disabled]="(emailInput.invalid || pwdInput.invalid)"
-              (click)="loggerForm(loginFormulaire)">Login</button>
+            <button type="submit" class="btn btn-my" value="Login" [disabled]="(emailInput.invalid || pwdInput.invalid)">Login</button>
           </div>
           <br>
           <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.dirty">

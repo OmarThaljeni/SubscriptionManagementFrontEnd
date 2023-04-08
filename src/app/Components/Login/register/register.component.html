@@ -1,40 +1,142 @@
 <div class="row">
-    <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
-      <div class="card register">
-        <div class="card-body auth-card">
-          <div class="auth-avatar">
-            <img src="../../../../assets/user.png" alt="user" class="user-image">
-          </div>
-          <form>
-              <div class="form-group">
-                <label for="name">Name : </label>
-                <input type="text" name="name" class="form-control" placeholder="Name">
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone : </label>
-                <input type="text" name="phone" class="form-control" placeholder="Phone">
-              </div>
-              <div class="form-group">
-                <label for="email">Email : </label>
-                <input type="text" name="email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="password">Password : </label>
-                <input type="password" name="password" class="form-control" placeholder="********">
-              </div>
-              <div class="form-group">
-                <label for="c_password">Confirm Password : </label>
-                <input type="password" name="c_password" class="form-control" placeholder="********">
-              </div>
-              <div class="text-center">
-                <input type="submit" class="btn btn-my" value="Sign Up">
-              </div>
-              <div class="text-center login">
-                Already have an account ? <a routerLink="/SubscriptionManagement/login">Login</a>. here
-              </div>
-              
-          </form>
+  <div class="col-sm-12 offset-md-3 col-lg-6 offset-sm-3">
+
+
+    <div class="card register">
+      <div class="card-body auth-card">
+        <div class="auth-avatar">
+          <img src="../../../../assets/user.png" alt="user" class="user-image">
         </div>
+
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div> 
+            <h2>User registration</h2>
+          </div>
+          <br>
+          <div class="flex-parent-element">
+
+            <div class="flex-child-element-firstname">
+              <label for="firstName">First name: </label>
+              <input id="firstName" type="text" class="form-control" placeholder="First name" formControlName="firstName"
+                #fir />
+            </div>
+            <div class="flex-child-element-lastname">
+              <label for="lastName">Last name: </label>
+              <input id="lastName" type="text" class="form-control" placeholder="Last name" formControlName="lastName"
+                #las />
+            </div>
+  
+          </div>
+          <br>
+
+          <div class="flex-parent-element">
+          
+            <div class="flex-child-element-email">
+              <label for="email">Email: </label>
+              <input id="email" type="text" class="form-control" placeholder="Email" formControlName="email" #ema />
+            </div>
+            <div class="flex-child-element-phone">
+              <label for="phone">Phone: </label>
+              <input id="phone" type="number" class="form-control" placeholder="Phone" formControlName="phone" #pho />
+            </div>
+  
+          </div>
+          <br>
+
+          <div class="form-group">
+            <label for="adress">Adress: </label>
+            <input id="adress" type="text" class="form-control" placeholder="Adress" formControlName="adress" #adr />
+          </div>
+
+          <div class="flex-parent-element">
+            
+            <div class="flex-child-element-password">
+              <label for="newPassword">Password: </label>
+              <input (ngModelChange)="checkIdenticalPassword()" id="newPassword" type="password" class="form-control"
+                formControlName="newPassword" #pw />
+            </div>
+  
+            <div class="flex-child-element-confirm-password">
+              <label for="confirmPassword">Confirm Password :</label>
+              <input (ngModelChange)="checkIdenticalPassword()" id="confirmPassword" type="password" class="form-control" [ngClass]="confirmPasswordClass"
+                formControlName="confirmPassword" #cpw/>
+            </div>
+  
+          </div>
+          <br>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-my" value="Register"  [disabled]="registerForm.invalid">Register</button>
+          </div>
+
+          <div class="text-center login">
+            Already have an account ? <a routerLink="/SubscriptionManagement/login">Login</a>. here
+          </div>
+
+        </form>
+
+
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+          <div class="alert alert-danger" *ngIf="confirmPassword.errors?.['required'] && !(newPassword.invalid && (newPassword.dirty || newPassword.touched)) ">
+            Confirm password Field is required
+          </div>
+          <div class="alert alert-danger" *ngIf="confirmPassword.errors?.['pattern']">
+            Password must contain at least one number, one uppercase and a
+            lowercase letter and at least 8 characters
+          </div>
+        </div>
+
+        <div *ngIf=" newPassword.invalid && (newPassword.dirty || newPassword.touched) ">
+          <div class="alert alert-danger" *ngIf="newPassword.errors?.['required']">
+            Password is required
+          </div>
+          <div class="alert alert-danger" *ngIf="newPassword.errors?.['pattern']">
+            The new Password must contain at least one number, one uppercase and a
+            lowercase letter and at least 8 characters
+          </div>
+        </div>
+
+    
+        <div *ngIf=" phone.invalid && (phone.dirty || phone.touched) ">
+          <div class="alert alert-danger" *ngIf="phone.errors?.['required']">
+            Phone is required
+          </div>
+        </div>
+
+
+        <div class="alert alert-danger" *ngIf=" email.invalid && (email.dirty || email.touched) ">
+          Email is not valid !!
+        </div>
+
+
+        <div class="alert alert-danger" *ngIf="isIdentique && confirmPassword.touched">
+          Passwords did not match
+        </div>  
+
+
+        <div *ngIf=" adress.invalid && (adress.dirty || adress.touched) ">
+          <div class="alert alert-danger" *ngIf="adress.errors?.['required']">
+            Adress is required
+          </div>
+        </div>
+        
+
+        <div *ngIf=" lastName.invalid && (lastName.dirty || lastName.touched) ">
+          <div class="alert alert-danger" *ngIf="lastName.errors?.['required']">
+            Last name is required
+          </div>
+        </div>
+
+
+        <div *ngIf=" firstName.invalid && (firstName.dirty || firstName.touched) ">
+          <div class="alert alert-light" *ngIf="firstName.errors?.['required']">
+            First name is required
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
+</div>

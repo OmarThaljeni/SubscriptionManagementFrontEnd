@@ -13,10 +13,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  loggerForm(form:any){
-    console.log(form);
-    
-  }
+
+  
   login(credentials: any) {
     this.loginService.login(credentials).subscribe(
       (response: any) => {

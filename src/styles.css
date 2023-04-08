@@ -3,7 +3,7 @@
 @import url('../node_modules/simple-keyboard/build/css/index.css');
 body{
   
-  background-color: brown;
+  background-color:#8d051c;
 }
 .auth-card{
   background: #c31432;  /* fallback for old browsers */
@@ -29,9 +29,10 @@ label{
   border-radius: 6px;
 }
 .register{
-  margin-top: 35px;
+  margin-top: 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10% 50%;
+  background-position: 50% 50%;
 }
 .btn-my{
   background-color: #d39e00;

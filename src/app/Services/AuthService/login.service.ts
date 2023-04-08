@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http';
 
 
 
-const login = 'http://localhost:8090/SubscriptionManagement/authenticate'
+const login_url = 'http://localhost:8090/SubscriptionManagement/authenticate'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(private http : HttpClient) { }
   isLoggedIn(){
     let token = localStorage.getItem('token') || sessionStorage.getItem("token");
     if(token){
@@ -22,7 +22,7 @@ export class LoginService {
   }
 
   login(credentials : any) {
-    return this.http.post(login,credentials);
+    return this.http.post(login_url,credentials);
   }
 
   logout() {

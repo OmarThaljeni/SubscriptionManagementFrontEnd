@@ -6,3 +6,47 @@
     font-weight: 600;
     text-decoration: none;
   }
+
+  .alert {
+    color: #31708F;
+    background-color: #df1111;
+    border-color: #BCE8F1;
+    color: white;
+}
+
+.sd-form-group{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.flex-parent-element {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
+  width: 100%; 
+}
+
+.flex-adress-element {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
+  width: 100%; 
+}
+
+
+.flex-child-element {
+  margin: 10px; 
+  border: 1px solid red; 
+}
+
+.flex-child-element:first-child {
+  margin-right: 20px;
+}
+
+h2{
+  text-align: center;
+  color: white;
+  position: relative;
+}
