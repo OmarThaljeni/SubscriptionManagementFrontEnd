@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/AuthService/login.service';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +11,37 @@ import { LoginService } from 'src/app/Services/AuthService/login.service';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder, private notificationService : NotificationService) {}
+  
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl(null, [
+    (c: AbstractControl) => Validators.required(c),
+    Validators.pattern(
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/
+    ),
+  ]);
 
   ngOnInit(): void {
+      this.notificationService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });  
   }
 
-  
+  loginForm = this.formBuilder.group(
+    {
+      email : this.email,
+      password: this.password,
+    }
+  );
+
   login(credentials: any) {
     this.loginService.login(credentials).subscribe(
       (response: any) => {
-        const token = response;
+        const token = response.token;
+        const user_id = response.id;
+        const id_roles = response.roles[0].id;
         const link = ['SubscriptionManagement/home'];
         localStorage.setItem('token', token);
+        localStorage.setItem('user_id', user_id);
+        localStorage.setItem('id_roles', id_roles);
         this.router.navigate(link);
       },
       error => {

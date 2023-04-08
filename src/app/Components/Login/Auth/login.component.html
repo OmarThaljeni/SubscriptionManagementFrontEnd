@@ -5,30 +5,43 @@
         <div class="auth-avatar">
           <img src="../../../../assets/user.png" alt="user" class="user-image">
         </div>
-        <form #loginFormulaire="ngForm" (submit)="login(loginFormulaire.value)">
+        <form class="form" [formGroup]="loginForm" (submit)="login(loginForm.value)">
+
           <div class="form-group">
-            <label for="email">Email : </label>
-            <input type="text" email="true" name="email" ngModel class="form-control" #emailInput="ngModel" required placeholder="Email">
+            <label for="email">Email: </label>
+            <input id="email" type="text" class="form-control" placeholder="Email" formControlName="email" #ema />
           </div>
 
           <div class="form-group">
             <label for="password">Password : </label>
-            <input type="password" required minlength="4" name="password" class="form-control" ngModel
-              class="form-control" #pwdInput="ngModel" placeholder="********">
+            <input type="password" id="password" type="password" class="form-control" formControlName="password" placeholder="********" #pw/>
           </div>
+
+
           <div class="text-center">
-            <button type="submit" class="btn btn-my" value="Login" [disabled]="(emailInput.invalid || pwdInput.invalid)">Login</button>
+            <button type="submit" class="btn btn-my" value="Login" [disabled]="loginForm.invalid">Login</button>
           </div>
-          <br>
-          <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.dirty">
-            Your email is not valid !!
-          </div>
-
-          <div class="alert alert-danger" *ngIf="pwdInput.invalid && pwdInput.touched">
-            Password must be greater than 4 caracter !!
-          </div>
-
         </form>
+        <br>
+
+        <div *ngIf=" email.invalid && (email.dirty || email.touched) ">
+          <div class="alert alert-danger" *ngIf="email.errors?.['required']">
+            Email is not valid !!
+          </div>
+        </div>
+
+
+        <div *ngIf=" password.invalid && (password.dirty || password.touched) ">
+          <div class="alert alert-danger" *ngIf="password.errors?.['required']">
+            Password is required
+          </div>
+          <div class="alert alert-danger" *ngIf="password.errors?.['pattern']">
+            The new Password must contain at least one number, one uppercase and a
+            lowercase letter and at least 8 characters
+          </div>
+        </div>
+
+
         <div class="text-center sign-up">
           Don`t have an account ? <a routerLink="/SubscriptionManagement/register">Sign Up</a> here.
         </div>

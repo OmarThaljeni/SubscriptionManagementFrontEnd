@@ -1,5 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
+import { RegisterService } from 'src/app/Services/Register/register.service';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +11,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 })
 export class RegisterComponent implements OnInit {
 
-  passwordsMatching = false;
-  isConfirmPasswordDirty = false;
   isIdentique = false;
   confirmPasswordClass = 'form-control';
   newPassword = new FormControl(null, [
@@ -43,8 +44,9 @@ export class RegisterComponent implements OnInit {
     }
   );
 
-  constructor(private formBuilder: FormBuilder, private changeDetectRef : ChangeDetectorRef) {}
-
+  constructor(private formBuilder: FormBuilder, private changeDetectRef : ChangeDetectorRef, 
+    private registerService : RegisterService, private router : Router,
+    private notificationService : NotificationService) {}
   ngOnInit(): void {
   }
   
@@ -52,11 +54,21 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     console.log(this.registerForm.valid);
     console.log(this.registerForm);
-    this.changeDetectRef.detectChanges();
-    console.log('===> ',Object.values(this.registerForm.controls).filter(c => c.invalid));
-    
-
+    this.changeDetectRef.detectChanges();    
   }
+
+  register(credentials: any) {
+    this.registerService.register(credentials).subscribe(
+      (response: any) => {
+        const link = ['SubscriptionManagement/login'];
+        this.router.navigate(link);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 
   
 checkIdenticalPassword() {

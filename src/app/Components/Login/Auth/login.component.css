@@ -11,3 +11,10 @@
     font-weight: 600;
     text-decoration: none;
   }
+
+  .alert {
+    color: #31708F;
+    background-color: #df1111;
+    border-color: #BCE8F1;
+    color: white;
+}
