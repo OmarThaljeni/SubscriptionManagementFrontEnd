@@ -20,7 +20,19 @@ logout() {
   this.loginService.logout();
   const link = ['SubscriptionManagement/login'];
   this.router.navigate(link)
+}
 
+
+goToHome(){
+  const link = ['/SubscriptionManagement/cni-presentation'];
+  this.router.navigate(link)
+}
+
+
+
+goToListCustomer(){
+  const link = ['/SubscriptionManagement/list-customer'];
+  this.router.navigate(link)
 }
 
 }

@@ -4,9 +4,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav d-flex flex-row me-8">          
           <li class="nav-item me-12 me-lg-3">
-            <a class="fa fa-bars fa-2x" (click)="sidebarShow = !sidebarShow"> 
+<!--             <a class="fa fa-bars fa-2x" (click)="sidebarShow = !sidebarShow"> 
             </a>
-        </li>
+ -->        </li>
 
         <li class="nav-item me-12 me-lg-3">
           <a class="fa fa-sign-out fa-2x" (click)="logout()"> 
@@ -29,22 +29,24 @@
         </button>
       </nav>
     
-  
+
     
     <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
       
-        <div
+<!--         <div
           class="sidebar-close"
           (click)="sidebarShow = !sidebarShow"
       >
           X
       </div>
-        <div class="sidebar-content">
+ -->        <div class="sidebar-content">
     
-          <div>Acceuil</div>
-          <div>Gestion des clients</div>
+          <div (click)="goToHome()">Acceuil</div>
+          <div (click)="goToListCustomer()">Gestion des clients</div>
+
 
         </div>
     </div>
     
+
 </div>
