@@ -75,7 +75,7 @@ checkIdenticalPassword() {
 }
 
 showSuccess() {
-  this.toastService.show('Registration Successful !', { classname: 'bg-success text-light', delay: 4500 ,autohide: true});
+  this.toastService.show('Inscription réussi !', { classname: 'bg-success text-light', delay: 4500 ,autohide: true});
 }
 
 

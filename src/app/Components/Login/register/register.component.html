@@ -10,18 +10,18 @@
         <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
 
           <div>
-            <h2>User registration</h2>
+            <h2>Inscription</h2>
           </div>
           <br>
           <div class="flex-parent-element">
 
             <div class="flex-child-element-firstname">
-              <label for="firstname">First name: </label>
+              <label for="firstname">Prénom: </label>
               <input id="firstname" type="text" class="form-control" placeholder="First name"
                 formControlName="firstname" #fir />
             </div>
             <div class="flex-child-element-lastname">
-              <label for="lastName">Last name: </label>
+              <label for="lastName">Nom: </label>
               <input id="lastname" type="text" class="form-control" placeholder="Last name" formControlName="lastname"
                 #las />
             </div>
@@ -36,7 +36,7 @@
               <input id="email" type="text" class="form-control" placeholder="Email" formControlName="email" #ema />
             </div>
             <div class="flex-child-element-phone">
-              <label for="phone">Phone: </label>
+              <label for="phone">Télephone: </label>
               <input id="phone" type="number" class="form-control" placeholder="Phone" formControlName="phone" #pho />
             </div>
 
@@ -44,14 +44,14 @@
           <br>
 
           <div class="form-group">
-            <label for="adress">Adress: </label>
+            <label for="adress">Adresse: </label>
             <input id="adress" type="text" class="form-control" placeholder="Adress" formControlName="adress" #adr />
           </div>
 
           <div class="flex-parent-element">
 
             <div class="flex-child-element-password">
-              <label for="newPassword">Password: </label>
+              <label for="newPassword">Mot de passe: </label>
               <input (ngModelChange)="checkIdenticalPassword()" id="newPassword" type="password" class="form-control" placeholder="********"
                 formControlName="password" #pw />
             </div>
@@ -67,7 +67,7 @@
 
           <div class="text-center">
             <button type="submit" class="btn btn-my" value="Register"
-              [disabled]="registerForm.invalid">Register</button>
+              [disabled]="registerForm.invalid">Inscrire</button>
           </div>
 
           <div class="text-center login">
@@ -80,11 +80,11 @@
         <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
           <div class="alert alert-danger"
             *ngIf="confirmPassword.errors?.['required'] && !(newPassword.invalid && (newPassword.dirty || newPassword.touched)) ">
-            Confirm password Field is required
+            Confirmer le mot de passe de ce champ est obligatoire
           </div>
           <div class="alert alert-danger" *ngIf="confirmPassword.errors?.['pattern']">
-            Password must contain at least one number, one uppercase and a
-            lowercase letter and at least 8 characters
+            Le mot de passe doit contenir au moins un chiffre, une majuscule et une
+             lettre minuscule et au moins 8 caractères
           </div>
         </div>
 
@@ -101,18 +101,18 @@
 
         <div *ngIf=" phone.invalid && (phone.dirty || phone.touched) ">
           <div class="alert alert-danger" *ngIf="phone.errors?.['required']">
-            Phone is required
+            Télephone est obligatoire
           </div>
         </div>
 
-        <div *ngIf=" email.invalid && (phone.dirty || email.touched) ">
+        <div *ngIf=" email.invalid && (email.dirty || email.touched) ">
           <div class="alert alert-danger" *ngIf="email.errors?.['required']">
-            Email is not valid !!
+            Email n'est pas valide !!
           </div>
         </div>
 
         <div class="alert alert-danger" *ngIf=" email.invalid && (email.dirty || email.touched) ">
-          Email is not valid !!
+          Email n'est pas valide !!
         </div>
 
 
@@ -123,21 +123,21 @@
 
         <div *ngIf=" adress.invalid && (adress.dirty || adress.touched) ">
           <div class="alert alert-danger" *ngIf="adress.errors?.['required']">
-            Adress is required
+            Adresse est obligatoire
           </div>
         </div>
 
 
         <div *ngIf=" lastname.invalid && (lastname.dirty || lastname.touched) ">
           <div class="alert alert-danger" *ngIf="lastname.errors?.['required']">
-            Last name is required
+            Nom est obligatoire
           </div>
         </div>
 
 
         <div *ngIf=" firstname.invalid && (firstname.dirty || firstname.touched) ">
           <div class="alert alert-light" *ngIf="firstname.errors?.['required']">
-            First name is required
+            Prénom est obligatoire
           </div>
         </div>
 
