@@ -1,25 +1,19 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
 
-export interface UserData {
+export interface Customer {
   id: string;
-  name: string;
-  progress: string;
-  color: string;
+  firstname: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  adress: string;
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 
 @Component({
   selector: 'app-customer-list',
@@ -28,23 +22,46 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 })
 export class CustomerListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  ELEMENT_DATA: Customer[];
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress','update','delete'];
+
+  
+  @ViewChild(MatTable, {static:false}) table: MatTable<any>;
+  dataSource: MatTableDataSource<Customer>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  filter = new FormControl('', []);
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  filterForm = this.formBuilder.group(
+    {
+      filter : this.filter,
+    }
+  );
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+
+  constructor(private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
+    this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getAllCustomers();
+  }
+
+  getAllCustomers() {
+    let resp = this.customerManagementService.getListCustomers();
+    resp.subscribe(
+      response => {        
+        this.dataSource.data = response as Customer[]; 
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    
+      },
+      error => {
+        console.log(error);
+      });
+
+    
   }
 
   applyFilter(filterValue: Event) {
@@ -55,24 +72,18 @@ export class CustomerListComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
+/*   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
+  } */
   
-}
+  filterByKeyWord(words : any){
+    this.dataSource.filter = words.toString().trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
   };
-}
+    
+  }
+  

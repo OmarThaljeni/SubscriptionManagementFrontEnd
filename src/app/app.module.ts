@@ -17,6 +17,8 @@ import { PresentationComponent } from './Components/home/CniPresentation/present
 import { MatTableModule } from '@angular/material/table'  
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+
 import {
   MatPaginatorModule
 } from '@angular/material/paginator';
@@ -24,8 +26,16 @@ import {
   MatSortModule
 } from '@angular/material/sort';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import 'hammerjs';
+import { MatButtonModule } from '@angular/material/button';
+const materialModules = [
+  MatIconModule,
+  MatToolbarModule,
+  MatButtonModule
+];
+
 
 @NgModule({
   declarations: [
@@ -42,12 +52,14 @@ import 'hammerjs';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
+    MatIconModule,
     MatPaginatorModule,
     MatSortModule,
     NgbModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    materialModules,
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
