@@ -3,7 +3,13 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
+import { AddCustomerComponent } from '../add-customer/add-customer.component';
+import { ModalConfig } from '../../ModelConfig/modal-config';
+import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
+import { DialogService } from 'src/app/Services/Notification/dialog.service';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
 
 export interface Customer {
   id: string;
@@ -39,14 +45,29 @@ export class CustomerListComponent implements OnInit {
     }
   );
 
+  buttonText: string = 'Open Modal';
+  
+  modalRef: any;
+  modalOptions: NgbModalOptions = ModalConfig;
 
-  constructor(private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
+
+  constructor(private dialogService: DialogService, private notificationService:NotificationService,private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
     this.getAllCustomers();
   }
+
+  openAddCustomerModal() {
+    this.modalRef = this.modalService.open(AddCustomerComponent, this.modalOptions);
+  }
+
+  openUpdateCustomerModal(row) {
+    this.modalRef = this.modalService.open(UpdateCustomerComponent, this.modalOptions);
+    this.modalRef.componentInstance.fromParent = row;
+  }
+
 
   getAllCustomers() {
     let resp = this.customerManagementService.getListCustomers();
@@ -71,11 +92,6 @@ export class CustomerListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-/*   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  } */
   
   filterByKeyWord(words : any){
     this.dataSource.filter = words.toString().trim().toLowerCase();
@@ -84,6 +100,19 @@ export class CustomerListComponent implements OnInit {
     }
 
   };
-    
+   
+
+
+  onDelete(row){
+    console.log("===> ",row);
+    this.dialogService.openConfirmDialog('Are you sure to delete this record ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.notificationService.success('! Deleted successfully');
+      }
+    });
   }
+
+  }
+
   

@@ -3,7 +3,7 @@
 
   <form class="form" [formGroup]="filterForm" (submit)="filterByKeyWord(filterForm.value)">
     <div>
-    <button class="raised-button btn btn-success">
+    <button class="raised-button btn btn-success" (click)="openAddCustomerModal()">
       <h5> <i class="fa fa-plus-circle"> </i> <strong>  Ajouter client</strong></h5>
   </button>
 </div>
@@ -51,13 +51,13 @@
       <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row" > 
-          <button class="icon-update" mat-icon-button><mat-icon>system_update_alt</mat-icon></button>
+          <button class="icon-update" mat-icon-button (click)="openUpdateCustomerModal(row)"><mat-icon>system_update_alt</mat-icon></button>
       </ng-container>
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row" > 
-          <button class="icon-delete" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+          <button class="icon-delete" mat-icon-button color="warn" (click)="onDelete(row)"><mat-icon>delete</mat-icon></button>
       </ng-container>
 
     
@@ -77,3 +77,5 @@
   
 
 </div>
+
+

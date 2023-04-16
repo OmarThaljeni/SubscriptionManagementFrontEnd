@@ -18,23 +18,15 @@ import { MatTableModule } from '@angular/material/table'
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-
-import {
-  MatPaginatorModule
-} from '@angular/material/paginator';
-import {
-  MatSortModule
-} from '@angular/material/sort';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 import 'hammerjs';
-import { MatButtonModule } from '@angular/material/button';
-const materialModules = [
-  MatIconModule,
-  MatToolbarModule,
-  MatButtonModule
-];
+import { AddCustomerComponent } from './Components/CustomerManagement/add-customer/add-customer.component';
+import { UpdateCustomerComponent } from './Components/CustomerManagement/update-customer/update-customer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatConfirmDialogComponent } from './Components/mat-confirm-dialog/mat-confirm-dialog.component';
+import {MatSnackBarModule } from '@angular/material/snack-bar';
+import { MaterialModule } from './Components/Material/material.module';
 
 
 @NgModule({
@@ -46,25 +38,31 @@ const materialModules = [
     ToastsContainerComponent,
     CustomerListComponent,
     PresentationComponent,
+    AddCustomerComponent,
+    UpdateCustomerComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
+   MatSnackBarModule,
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
+    MaterialModule,
     NgbModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    materialModules,
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule { }

@@ -5,6 +5,9 @@ import { RegisterComponent } from './Components/Login/register/register.componen
 import { HomeComponent } from './Components/home/home.component';
 import { CustomerListComponent } from './Components/CustomerManagement/customer-list/customer-list.component';
 import { PresentationComponent } from './Components/home/CniPresentation/presentation/presentation.component';
+import { LoginGuard } from './Services/AuthService/login-guard';
+import { LogoutGuard } from './Services/AuthService/logout-guard';
+import { AuthentificationGuard } from './Services/AuthService/auth-guard';
 
 const routes: Routes = [
 
@@ -12,11 +15,11 @@ const routes: Routes = [
 
   {path:'SubscriptionManagement' ,
     children:[
-      { path: 'login', component:LoginComponent},
-      { path: 'register', component:RegisterComponent},
-      { path: 'home', component:HomeComponent},
-      { path: 'list-customer', component:CustomerListComponent},
-      { path: 'cni-presentation', component:PresentationComponent},
+      { path: 'login', component:LoginComponent, canActivate:[LoginGuard]},
+      { path: 'register', component:RegisterComponent,canActivate:[LoginGuard]},
+      { path: 'home', component:HomeComponent,canActivate:[AuthentificationGuard]},
+      { path: 'list-customer', component:CustomerListComponent,canActivate:[AuthentificationGuard]},
+      { path: 'cni-presentation', component:PresentationComponent,canActivate:[AuthentificationGuard]},
   ]},
   
 ];

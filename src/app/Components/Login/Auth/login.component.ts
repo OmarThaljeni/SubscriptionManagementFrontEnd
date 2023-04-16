@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         const token = response.token;
         const user_id = response.id;
         const id_roles = response.roles[0].id;
-        const link = ['SubscriptionManagement/home'];
+        const link = ['SubscriptionManagement/cni-presentation'];
         localStorage.setItem('token', token);
         localStorage.setItem('user_id', user_id);
         localStorage.setItem('id_roles', id_roles);

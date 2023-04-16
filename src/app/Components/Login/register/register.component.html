@@ -98,23 +98,15 @@
           </div>
         </div>
 
-
         <div *ngIf=" phone.invalid && (phone.dirty || phone.touched) ">
           <div class="alert alert-danger" *ngIf="phone.errors?.['required']">
             Télephone est obligatoire
           </div>
         </div>
 
-        <div *ngIf=" email.invalid && (email.dirty || email.touched) ">
-          <div class="alert alert-danger" *ngIf="email.errors?.['required']">
-            Email n'est pas valide !!
-          </div>
-        </div>
-
         <div class="alert alert-danger" *ngIf=" email.invalid && (email.dirty || email.touched) ">
           Email n'est pas valide !!
         </div>
-
 
         <div class="alert alert-danger" *ngIf="isIdentique && confirmPassword.touched">
           Passwords did not match
@@ -134,9 +126,8 @@
           </div>
         </div>
 
-
         <div *ngIf=" firstname.invalid && (firstname.dirty || firstname.touched) ">
-          <div class="alert alert-light" *ngIf="firstname.errors?.['required']">
+          <div class="alert alert-danger" *ngIf="firstname.errors?.['required']">
             Prénom est obligatoire
           </div>
         </div>

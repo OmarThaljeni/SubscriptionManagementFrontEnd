@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   public sidebarShow: boolean = true;
   isCollapsed = true;
 
-  constructor(private loginService : LoginService, private router: Router) { }
+  constructor(public loginService : LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }

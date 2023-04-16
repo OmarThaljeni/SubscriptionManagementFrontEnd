@@ -1,7 +1,82 @@
 /* Add application styles & imports to this file! */
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
 @import url('../node_modules/simple-keyboard/build/css/index.css');
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* notification */
+snack-bar-container.success {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+snack-bar-container.success {
+  background-color: #f99157;
+  color: #fff;
+}
+
+
+.snack-bar-container.notification simple-snack-bar {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+
+.hide {
+  display: none;
+}
+
+/* for dialog pop-up */
+.btn-dialog-close {
+  width: 45px;
+  min-width: 0px !important;
+  height: 40px;
+  padding: 0px !important;
+}
+
+/* mat-confirm-dialog (customised dialog) */
+.confirm-dialog-container .mat-dialog-container {
+  border-radius: .25em .25em .4em .4em;
+  padding: 0px;
+}
+
+.confirm-dialog-container .content-container {
+  margin: 5px 5px 15px 5px;
+  color: #8f9cb5;
+  display: flex;
+}
+
+.confirm-dialog-container #close-icon {
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
+}
+
+.confirm-dialog-container #close-icon:hover {
+  cursor: pointer;
+}
+
+.confirm-dialog-container #no-button {
+  height: 50px;
+  width: 50%;
+  background-color: #fc7169;
+  color: white;
+  border-radius: 0px;
+}
+
+.confirm-dialog-container #yes-button {
+  height: 50px;
+  width: 50%;
+  background-color: #b6bece;
+  color: white;
+  border-radius: 0px;
+}
+
+.confirm-dialog-container span.content-span {
+  padding: 35px 16px;
+  text-align: center;
+  font-size: 20px;
+}
+
 
 .basic-container {
   padding: 30px;
@@ -12,34 +87,43 @@
   float: right;
 }
 
-body{
-  background-color:#ecdee0;
+body {
+  background-color: #ecdee0;
 }
-.auth-card{
-  background: #c31432;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #9e51d4, #eb6f83);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #240b36, #836b6f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+.auth-card {
+  background: #c31432;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #9e51d4, #eb6f83);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #240b36, #836b6f);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: 5px;
   box-shadow: 0px 0px 30px #f7f7f7;
 }
-label{
+
+label {
   color: #fff;
   font-weight: 700;
 }
-.user-image{
+
+.user-image {
   height: 70px;
 }
-.auth-avatar{
+
+.auth-avatar {
   text-align: center;
   margin-top: -50px;
 }
-.auth{
-  margin-top:210px;
+
+.auth {
+  margin-top: 210px;
   border: none;
   border-radius: 6px;
 }
-.register{
-  margin-top:120px;
+
+.register {
+  margin-top: 120px;
   border: none;
   border-radius: 10% 50%;
   background-position: 50% 50%;
