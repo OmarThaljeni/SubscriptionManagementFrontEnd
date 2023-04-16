@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Login/register/register.component';
@@ -45,6 +44,7 @@ import { MaterialModule } from './Components/Material/material.module';
   imports: [
     BrowserModule,
    MatSnackBarModule,
+   BrowserAnimationsModule,
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
@@ -55,7 +55,6 @@ import { MaterialModule } from './Components/Material/material.module';
     MaterialModule,
     NgbModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
