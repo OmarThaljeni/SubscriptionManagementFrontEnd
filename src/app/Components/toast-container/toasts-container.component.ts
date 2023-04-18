@@ -12,4 +12,6 @@ export class ToastsContainerComponent {
 
   isTemplate(toast: { textOrTpl: any; }) { return toast.textOrTpl instanceof TemplateRef; }
 
+
+  
 }
