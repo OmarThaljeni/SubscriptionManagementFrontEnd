@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/Login/register/register.component';
 import { LoginComponent } from './Components/Login/Auth/login.component';
-import { HomeComponent } from './Components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +11,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainerComponent } from './Components/toast-container/toasts-container.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomerListComponent } from './Components/CustomerManagement/customer-list/customer-list.component';
-import { PresentationComponent } from './Components/home/CniPresentation/presentation/presentation.component'
 import { MatTableModule } from '@angular/material/table'  
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
@@ -26,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from './Components/mat-confirm-dialog/mat-confirm-dialog.component';
 import {MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from './Components/Material/material.module';
+import { PresentationComponent } from './Components/home/presentation.component';
 
 
 @NgModule({
@@ -33,7 +32,6 @@ import { MaterialModule } from './Components/Material/material.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ToastsContainerComponent,
     CustomerListComponent,
     PresentationComponent,

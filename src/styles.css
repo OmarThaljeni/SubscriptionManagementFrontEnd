@@ -3,6 +3,7 @@
 @import url('../node_modules/simple-keyboard/build/css/index.css');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
 /* notification */
 snack-bar-container.success {
   background-color: #5cb85c;

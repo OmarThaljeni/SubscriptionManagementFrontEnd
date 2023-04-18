@@ -1,5 +1,6 @@
 div.main {
-    margin-left: 21%;
+    margin-left: 5px;
+    margin-right: 5px;
     position: relative;
 }
 .has-search .form-control {

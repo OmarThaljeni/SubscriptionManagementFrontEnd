@@ -1,9 +1,12 @@
 
 
 div.main {
-    position:fixed;
-    margin-left: 27%;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
 }
+
+  
 
 .element {
     font-family: verdana, geneva;
@@ -20,8 +23,8 @@ div.main {
   
   .tp-box {
     position: relative;
-    width: 1090px;
-    height: 620px;
+    width: 870px;
+    height: 500px;
     margin: 3rem auto;
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;

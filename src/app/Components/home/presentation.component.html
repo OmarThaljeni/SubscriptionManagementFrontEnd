@@ -4,7 +4,7 @@
     <div class="tp-wrapper">
         <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
             <div class="tp-box__side tp-box__front">
-                <p style="font-family:courier; text-align:center">
+                <p style="font-family:courier; text-align:center; font-size:15px">
                     Le Centre National de l’Informatique est un établissement public à caractère non administratif doté
                     de la
                     personnalité civile et de l’autonomie financière. Le CNI est un organisme placé sous la tutelle du
@@ -13,15 +13,12 @@
                     des
                     technologies de la communication et certifié ISO 9001 version 2015.
                 </p>
-                <br>
                 <button mat-raised-button (click)="lireLaSuite()">
                     <mat-icon>remove_red_eye</mat-icon> Lire La suite
                 </button>
             </div>
             <div class="tp-box__side tp-box__back">
-
-                <img src="../../../../../assets/cni_tunisie.jpg" width="1090px" height="620px">
-
+                <img src="../../../../../assets/cni_tunisie.jpg" width="870px" height="500px">
             </div>
         </div>
     </div>
