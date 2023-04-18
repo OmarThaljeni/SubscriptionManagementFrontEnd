@@ -25,6 +25,7 @@ import { MatConfirmDialogComponent } from './Components/mat-confirm-dialog/mat-c
 import {MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from './Components/Material/material.module';
 import { PresentationComponent } from './Components/home/presentation.component';
+import { loginInterceptorProvider } from './Services/AuthService/login-interceptor';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import { PresentationComponent } from './Components/home/presentation.component'
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [loginInterceptorProvider],
   bootstrap: [AppComponent],
   entryComponents:[MatConfirmDialogComponent]
 })

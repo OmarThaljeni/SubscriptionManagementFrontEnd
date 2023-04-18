@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -29,10 +29,10 @@ export interface Customer {
 export class CustomerListComponent implements OnInit {
 
   ELEMENT_DATA: Customer[];
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress','update','delete'];
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
 
-  
-  @ViewChild(MatTable, {static:false}) table: MatTable<any>;
+
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   dataSource: MatTableDataSource<Customer>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,17 +41,17 @@ export class CustomerListComponent implements OnInit {
 
   filterForm = this.formBuilder.group(
     {
-      filter : this.filter,
+      filter: this.filter,
     }
   );
 
   buttonText: string = 'Open Modal';
-  
+
   modalRef: any;
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor(private dialogService: DialogService, private toastService:ToastService,private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
+  constructor(private dialogService: DialogService, private toastService: ToastService, private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService: CustomerManagementService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -70,19 +70,19 @@ export class CustomerListComponent implements OnInit {
 
 
   getAllCustomers() {
-    let resp = this.customerManagementService.getListCustomers();
+    let resp = this.customerManagementService.getListUsers();
     resp.subscribe(
-      response => {        
-        this.dataSource.data = response as Customer[]; 
+      response => {
+        this.dataSource.data = response as Customer[];
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-    
+
       },
       error => {
         console.log(error);
       });
 
-    
+
   }
 
   applyFilter(filterValue: Event) {
@@ -92,30 +92,35 @@ export class CustomerListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
-  filterByKeyWord(words : any){
+
+  filterByKeyWord(words: any) {
     this.dataSource.filter = words.toString().trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
 
   };
-   
 
 
-  onDelete(row){
+
+  onDelete(row) {
     this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
-    .afterClosed().subscribe(res =>{
-      if(res){
-        this.toastService.showWarning();
-
-      }
-    });
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.customerManagementService.deleteUser(row.id).subscribe(() => {
+            this.dataSource.data = this.dataSource.data.filter(x => x.id !== row.id)
+            this.toastService.showSuccess();
+          },
+            () => {
+              this.toastService.showWarning();
+            })
+        }
+      });
   }
 
 
-  
 
-  }
 
-  
+}
+
+
