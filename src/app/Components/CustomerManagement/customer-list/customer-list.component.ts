@@ -9,7 +9,7 @@ import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { ModalConfig } from '../../ModelConfig/modal-config';
 import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
-import { NotificationService } from 'src/app/Services/Notification/notification.service';
+import { ToastService } from 'src/app/Services/Notification/toast.service';
 
 export interface Customer {
   id: string;
@@ -51,7 +51,7 @@ export class CustomerListComponent implements OnInit {
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor(private dialogService: DialogService, private notificationService:NotificationService,private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
+  constructor(private dialogService: DialogService, private toastService:ToastService,private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService : CustomerManagementService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -104,14 +104,17 @@ export class CustomerListComponent implements OnInit {
 
 
   onDelete(row){
-    console.log("===> ",row);
-    this.dialogService.openConfirmDialog('Are you sure to delete this record ?')
+    this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.notificationService.success('! Deleted successfully');
+        this.toastService.showWarning();
+
       }
     });
   }
+
+
+  
 
   }
 

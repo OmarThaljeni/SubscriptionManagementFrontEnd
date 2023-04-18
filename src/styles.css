@@ -4,24 +4,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 
-/* notification */
-snack-bar-container.success {
-  background-color: #5cb85c;
-  color: #fff;
-}
-
-snack-bar-container.success {
-  background-color: #f99157;
-  color: #fff;
-}
-
-
-.snack-bar-container.notification simple-snack-bar {
-  font-size: 18px !important;
-  font-weight: bold;
-}
-
-
 .hide {
   display: none;
 }
@@ -121,11 +103,16 @@ label {
   margin-top: 210px;
   border: none;
   border-radius: 6px;
+  margin-left: 120px;
+  width: 550px;
+
 }
 
 .register {
   margin-top: 120px;
   border: none;
+  margin-left: 160px;
+  width: 700px;
   border-radius: 10% 50%;
   background-position: 50% 50%;
 }

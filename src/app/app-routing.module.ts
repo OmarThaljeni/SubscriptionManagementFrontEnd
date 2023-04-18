@@ -13,8 +13,8 @@ const routes: Routes = [
 
   {path:'SubscriptionManagement' ,
     children:[
-      { path: 'login', component:LoginComponent, canActivate:[LoginGuard]},
-      { path: 'register', component:RegisterComponent,canActivate:[LoginGuard]},
+      { path: 'login', component:LoginComponent,canActivate:[LoginGuard]},
+      { path: 'register', component:RegisterComponent, canActivate:[LoginGuard]},
       { path: 'list-customer', component:CustomerListComponent,canActivate:[AuthentificationGuard]},
       { path: 'cni-presentation', component:PresentationComponent,canActivate:[AuthentificationGuard]},
   ]},
