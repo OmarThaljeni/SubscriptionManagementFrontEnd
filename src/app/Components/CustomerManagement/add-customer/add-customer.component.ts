@@ -1,10 +1,11 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import * as $ from "jquery";
 import 'jqueryui';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, NgModel, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
+import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -24,8 +25,7 @@ adress = new FormControl('', [Validators.required, Validators.maxLength(80)]);
 phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")]);
 
 
-  constructor(private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService : ToastService) {}
-
+  constructor(private modalService: NgbModal,private customerManagementService : CustomerManagementService,private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService : ToastService) {}
 
   ngOnInit() {
     $(document).ready(function() {
@@ -49,8 +49,16 @@ phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")
     }
   );
   
-  addCustomer(credentials: any) {
-    console.log(credentials);
+  addCustomer(credentials: any) {    
+    this.customerManagementService.addCustomer(credentials).subscribe(() => {
+      this.toastService.showSuccess();
+      this.modalService.dismissAll();
+    },
+      error => {
+        console.log(error); 
+      }
+    )
+    
   }
   
   showSuccess() {
