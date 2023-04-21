@@ -67,8 +67,6 @@ import { CustomerManagementService } from 'src/app/Services/CustomerManagementSe
     );
     
     updateCustomer(credentials: any) {
-      console.log("==> ",this.fromParent.id);
-      console.log("==> ",credentials);
       this.customerManagementService.updateCustomer(this.fromParent.id,credentials).subscribe(() => {
         this.toastService.showSuccess();
         this.modalService.dismissAll();

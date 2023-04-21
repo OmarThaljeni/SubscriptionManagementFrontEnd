@@ -28,10 +28,15 @@ goToHome(){
   this.router.navigate(link)
 }
 
-
-
 goToListCustomer(){
   const link = ['/SubscriptionManagement/list-customer'];
   this.router.navigate(link)
 }
+
+goToListResponsable(){
+  const link = ['/SubscriptionManagement/list-responsable'];
+  this.router.navigate(link)
+}
+
+
 }

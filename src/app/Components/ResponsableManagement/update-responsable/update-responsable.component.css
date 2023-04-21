@@ -1,0 +1,99 @@
+.modal-header{
+    background: #c31432;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9e51d4, #eb6f83);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #240b36, #836b6f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 5px;
+    box-shadow: 0px 0px 30px #f7f7f7;
+  }
+  
+
+  .modal-footer{
+    background: #c31432;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9e51d4, #eb6f83);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #240b36, #836b6f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 5px;
+    box-shadow: 0px 0px 30px #f7f7f7;
+
+  }
+
+  .alert {
+    color: #31708F;
+    background-color: #df1111;
+    border-color: #BCE8F1;
+    color: white;
+}
+
+.sd-form-group{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.flex-parent-element {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
+  width: 100%; 
+}
+
+.flex-adress-element {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
+  width: 100%; 
+  margin-left: 20px;
+}
+
+
+.flex-child-element {
+  margin: 10px; 
+  border: 1px solid red; 
+}
+
+.flex-child-element:first-child {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+h2{
+  text-align: center;
+  color: rgb(2, 2, 2);
+  position: relative;
+}
+
+.raised-button{
+  width: 200px;
+  background: #c31432;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #9e51d4, #eb6f83);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #240b36, #836b6f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 5px;
+  box-shadow: 0px 0px 30px #f7f7f7;
+  color: white;
+}
+
+
+.btnPosition{
+  margin-left: 540px;
+}
+
+.flex-child-element-email{
+  margin-left: 20px;
+}
+
+.flex-child-element-phone{
+  margin-right: 20px;
+}
+
+.flex-child-element-firstname{
+  margin-left: 20px;
+}
+
+.flex-child-element-lastname{
+  margin-right: 20px;
+}
+
+.form-group{
+  margin-left: 20px;
+  margin-right: 20px;
+}

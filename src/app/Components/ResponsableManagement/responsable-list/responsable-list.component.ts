@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
-import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { ModalConfig } from '../../ModelConfig/modal-config';
-import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
+import { AddResponsableComponent } from '../add-responsable/add-responsable.component';
+import { UpdateResponsableComponent } from '../update-responsable/update-responsable.component';
 
 export interface Customer {
   id: string;
@@ -22,11 +22,11 @@ export interface Customer {
 
 
 @Component({
-  selector: 'app-customer-list',
-  templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css']
+  selector: 'app-responsable-list',
+  templateUrl: './responsable-list.component.html',
+  styleUrls: ['./responsable-list.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class ResponsableListComponent implements OnInit {
 
   ELEMENT_DATA: Customer[];
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
@@ -56,32 +56,32 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllCustomers();
+    this.getAllResponsable();
   }
 
-  openAddCustomerModal() {
-    this.modalRef = this.modalService.open(AddCustomerComponent, this.modalOptions); 
+  openAddResponsableModal() {
+    this.modalRef = this.modalService.open(AddResponsableComponent, this.modalOptions); 
     this.modalRef.result.then(() => {
     },
     () => {
-        this.getAllCustomers();
+        this.getAllResponsable();
     });
     }
 
-  openUpdateCustomerModal(row) {
-    this.modalRef = this.modalService.open(UpdateCustomerComponent, this.modalOptions);
+  openUpdateResponsableModal(row) {
+    this.modalRef = this.modalService.open(UpdateResponsableComponent, this.modalOptions);
     this.modalRef.componentInstance.fromParent = row;
     this.modalRef.result.then(() => {
     },
     () => {
-        this.getAllCustomers();
+        this.getAllResponsable();
     });
 
   }
 
 
-  getAllCustomers() {
-    let resp = this.customerManagementService.getListCustomers();
+  getAllResponsable() {
+    let resp = this.customerManagementService.getListResponsables();
     resp.subscribe(
       response => {
         this.dataSource.data = response as Customer[];
@@ -97,7 +97,6 @@ export class CustomerListComponent implements OnInit {
 
   applyFilter(filterValue: Event) {
     this.dataSource.filter = filterValue.toString().trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -112,8 +111,8 @@ export class CustomerListComponent implements OnInit {
   };
 
 
-  deleteCustomer(row) {
-    this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
+  deleteResponsable(row) {
+    this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce responsable ?')
       .afterClosed().subscribe(res => {
         if (res) {
           this.customerManagementService.deleteUser(row.id).subscribe(() => {
@@ -131,5 +130,6 @@ export class CustomerListComponent implements OnInit {
 
 
 }
+
 
 

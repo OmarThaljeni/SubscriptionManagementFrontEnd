@@ -6,6 +6,7 @@ import { CustomerListComponent } from './Components/CustomerManagement/customer-
 import { LoginGuard } from './Services/AuthService/login-guard';
 import { AuthentificationGuard } from './Services/AuthService/auth-guard';
 import { PresentationComponent } from './Components/home/presentation.component';
+import { ResponsableListComponent } from './Components/ResponsableManagement/responsable-list/responsable-list.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'login', component:LoginComponent,canActivate:[LoginGuard]},
       { path: 'register', component:RegisterComponent, canActivate:[LoginGuard]},
       { path: 'list-customer', component:CustomerListComponent,canActivate:[AuthentificationGuard]},
+      { path: 'list-responsable', component:ResponsableListComponent,canActivate:[AuthentificationGuard]},
       { path: 'cni-presentation', component:PresentationComponent,canActivate:[AuthentificationGuard]},
   ]},
   

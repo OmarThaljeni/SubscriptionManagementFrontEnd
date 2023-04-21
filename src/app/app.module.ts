@@ -26,6 +26,9 @@ import {MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from './Components/Material/material.module';
 import { PresentationComponent } from './Components/home/presentation.component';
 import { loginInterceptorProvider } from './Services/AuthService/login-interceptor';
+import { ResponsableListComponent } from './Components/ResponsableManagement/responsable-list/responsable-list.component';
+import { AddResponsableComponent } from './Components/ResponsableManagement/add-responsable/add-responsable.component';
+import { UpdateResponsableComponent } from './Components/ResponsableManagement/update-responsable/update-responsable.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { loginInterceptorProvider } from './Services/AuthService/login-intercept
     PresentationComponent,
     AddCustomerComponent,
     UpdateCustomerComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    ResponsableListComponent,
+    AddResponsableComponent,
+    UpdateResponsableComponent
   ],
   imports: [
     BrowserModule,
