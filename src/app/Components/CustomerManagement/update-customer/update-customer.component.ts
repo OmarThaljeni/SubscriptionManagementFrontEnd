@@ -1,12 +1,13 @@
 
 
   import { Component, Input, OnInit, Output } from '@angular/core';
-  import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   import { Subject } from 'rxjs';
   import * as $ from "jquery";
   import 'jqueryui';
   import { FormBuilder, FormControl, Validators } from '@angular/forms';
   import { ToastService } from 'src/app/Services/Notification/toast.service';
+import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
   
   @Component({
     selector: 'app-update-customer',
@@ -25,7 +26,7 @@
     phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")]);
     
     @Input() fromParent;
-    constructor(private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService : ToastService) {}
+    constructor(private modalService: NgbModal,private customerManagementService : CustomerManagementService,private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService : ToastService) {}
   
   
     ngOnInit() {        
@@ -66,7 +67,16 @@
     );
     
     updateCustomer(credentials: any) {
+      console.log("==> ",this.fromParent.id);
       console.log("==> ",credentials);
+      this.customerManagementService.updateCustomer(this.fromParent.id,credentials).subscribe(() => {
+        this.toastService.showSuccess();
+        this.modalService.dismissAll();
+      },
+        error => {
+          console.log(error); 
+        }
+      )
     }
     
     showSuccess() {

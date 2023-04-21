@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -51,7 +51,7 @@ export class CustomerListComponent implements OnInit {
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor(private dialogService: DialogService, private toastService: ToastService, private modalService: NgbModal, private formBuilder: FormBuilder, private customerManagementService: CustomerManagementService) {
+  constructor(private modalService: NgbModal,private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder, private customerManagementService: CustomerManagementService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -60,12 +60,23 @@ export class CustomerListComponent implements OnInit {
   }
 
   openAddCustomerModal() {
-    this.modalRef = this.modalService.open(AddCustomerComponent, this.modalOptions);
-  }
+    this.modalRef = this.modalService.open(AddCustomerComponent, this.modalOptions); 
+    this.modalRef.result.then(() => {
+    },
+    () => {
+        this.getAllCustomers();
+    });
+    }
 
   openUpdateCustomerModal(row) {
     this.modalRef = this.modalService.open(UpdateCustomerComponent, this.modalOptions);
     this.modalRef.componentInstance.fromParent = row;
+    this.modalRef.result.then(() => {
+    },
+    () => {
+        this.getAllCustomers();
+    });
+
   }
 
 
@@ -76,7 +87,6 @@ export class CustomerListComponent implements OnInit {
         this.dataSource.data = response as Customer[];
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-
       },
       error => {
         console.log(error);
@@ -102,8 +112,7 @@ export class CustomerListComponent implements OnInit {
   };
 
 
-
-  onDelete(row) {
+  deleteCustomer(row) {
     this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
       .afterClosed().subscribe(res => {
         if (res) {

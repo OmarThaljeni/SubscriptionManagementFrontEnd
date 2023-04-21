@@ -8,7 +8,9 @@ const get_list_customer_url = 'http://localhost:8090/SubscriptionManagement/list
 
 const delete_user_utl = 'http://localhost:8090/SubscriptionManagement/delete-user'
 
+const add_customer_url = 'http://localhost:8090/SubscriptionManagement/add-customer'
 
+const update_customer_url = 'http://localhost:8090/SubscriptionManagement/update-customer'
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,14 @@ export class CustomerManagementService {
 
   deleteUser(id): Observable<any> {
     return this.http.delete(`${delete_user_utl}/${id}`);
+  }
+
+  addCustomer(credentials : any) {
+    return this.http.post(add_customer_url,credentials);
+  }
+
+  updateCustomer(id,credentials): Observable<any> {
+    return this.http.put(`${update_customer_url}/${id}`,credentials);
   }
 
 
