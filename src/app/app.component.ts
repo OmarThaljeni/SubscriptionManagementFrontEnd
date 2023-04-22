@@ -38,5 +38,10 @@ goToListResponsable(){
   this.router.navigate(link)
 }
 
+goToLisSubscription(){
+  const link = ['/SubscriptionManagement/list-subscription'];
+  this.router.navigate(link)
+}
+
 
 }

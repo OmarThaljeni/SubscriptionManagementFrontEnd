@@ -8,7 +8,6 @@ const get_list_customer_url = 'http://localhost:8090/SubscriptionManagement/list
 
 const get_list_responsable_url = 'http://localhost:8090/SubscriptionManagement/list-responsables'
 
-
 const delete_user_utl = 'http://localhost:8090/SubscriptionManagement/delete-user'
 
 const add_customer_url = 'http://localhost:8090/SubscriptionManagement/add-customer'

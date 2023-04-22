@@ -14,7 +14,7 @@ import { ToastService } from 'src/app/Services/Notification/toast.service';
 export interface Customer {
   id: string;
   firstname: string;
-  lastName: string;
+  lastname: string;
   email: string;
   phone: string;
   adress: string;

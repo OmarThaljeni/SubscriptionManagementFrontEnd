@@ -24,6 +24,7 @@
     "@angular/router": "^14.0.0",
     "@fortawesome/angular-fontawesome": "^0.12.1",
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
+    "@ng-select/ng-select": "^10.0.4",
     "@popperjs/core": "^2.11.6",
     "@types/jquery": "^3.5.6",
     "bootstrap": "^5.2.3",

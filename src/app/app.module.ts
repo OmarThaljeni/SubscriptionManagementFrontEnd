@@ -11,24 +11,29 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainerComponent } from './Components/toast-container/toasts-container.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomerListComponent } from './Components/CustomerManagement/customer-list/customer-list.component';
-import { MatTableModule } from '@angular/material/table'  
+import { MatTableModule } from '@angular/material/table'
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import 'hammerjs';
 import { AddCustomerComponent } from './Components/CustomerManagement/add-customer/add-customer.component';
 import { UpdateCustomerComponent } from './Components/CustomerManagement/update-customer/update-customer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from './Components/mat-confirm-dialog/mat-confirm-dialog.component';
-import {MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from './Components/Material/material.module';
 import { PresentationComponent } from './Components/home/presentation.component';
 import { loginInterceptorProvider } from './Services/AuthService/login-interceptor';
 import { ResponsableListComponent } from './Components/ResponsableManagement/responsable-list/responsable-list.component';
 import { AddResponsableComponent } from './Components/ResponsableManagement/add-responsable/add-responsable.component';
 import { UpdateResponsableComponent } from './Components/ResponsableManagement/update-responsable/update-responsable.component';
+import { ListSubscriptionComponent } from './Components/SubscriptionManagement/list-subscription/list-subscription.component';
+import { AddSubscriptionComponent } from './Components/SubscriptionManagement/add-subscription/add-subscription.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatSelectModule } from '@angular/material/select';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -44,14 +49,19 @@ import { UpdateResponsableComponent } from './Components/ResponsableManagement/u
     MatConfirmDialogComponent,
     ResponsableListComponent,
     AddResponsableComponent,
-    UpdateResponsableComponent
+    UpdateResponsableComponent,
+    ListSubscriptionComponent,
+    AddSubscriptionComponent
   ],
   imports: [
     BrowserModule,
-   MatSnackBarModule,
-   BrowserAnimationsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     MatTableModule,
+    NgSelectModule,
     MatInputModule,
+    MatAutocompleteModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
     MatPaginatorModule,
@@ -67,6 +77,6 @@ import { UpdateResponsableComponent } from './Components/ResponsableManagement/u
   ],
   providers: [loginInterceptorProvider],
   bootstrap: [AppComponent],
-  entryComponents:[MatConfirmDialogComponent]
+  entryComponents: [MatConfirmDialogComponent]
 })
 export class AppModule { }

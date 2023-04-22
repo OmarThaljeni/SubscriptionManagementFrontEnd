@@ -1,0 +1,88 @@
+<div>
+    <app-toasts-container></app-toasts-container>
+  </div>
+  
+  <div class="main">
+    <h1 style="color: rgb(0, 0, 0); margin-left: 30%;">Liste des abonnements </h1>
+  
+    <form class="form" [formGroup]="filterForm" (submit)="filterByKeyWord(filterForm.value)">
+      <div>
+      <button class="raised-button btn btn-success" (click)="openAddSubscriptionModal()">
+        <h5> <i class="fa fa-plus-circle"> </i> <strong>  Ajouter abonnement</strong></h5>
+    </button>
+  </div>
+    <br>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input id="filter" type="text" class="form-control" placeholder="Search" (ngModelChange)="filterByKeyWord(filterForm.value.filter)" formControlName="filter" #filter/>
+    </div>
+    </form>
+  
+  
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID abonnement </th>
+          <td mat-cell *matCellDef="let row"> {{row?.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="typeSubcription">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'abonnement </th>
+          <td mat-cell *matCellDef="let row"> {{row?.typeSubcription}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="idUser">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID abonné </th>
+          <td mat-cell *matCellDef="let row"> {{row?.userSet[0].id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom d'abonné </th>
+          <td mat-cell *matCellDef="let row"> {{row?.userSet[0].firstname}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom d'abonné </th>
+            <td mat-cell *matCellDef="let row"> {{row?.userSet[0].lastname}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="adress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse d'abonné </th>
+            <td mat-cell *matCellDef="let row"> {{row?.userSet[0].adress}} </td>
+          </ng-container>
+  
+        
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let row" > 
+            <button class="icon-update" mat-icon-button><mat-icon>system_update_alt</mat-icon></button>
+        </ng-container>
+  
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let row" > 
+            <button class="icon-delete" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        </ng-container>
+  
+      
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[7]"></mat-paginator>
+    </div>
+    
+    
+    <!-- Copyright 2019 Google Inc. All Rights Reserved.
+        Use of this source code is governed by an MIT-style license that
+        can be found in the LICENSE file at http://angular.io/license -->
+    
+        
+  </div>
+  
+  
+  
