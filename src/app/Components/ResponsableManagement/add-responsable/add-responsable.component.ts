@@ -34,7 +34,6 @@ phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")
       modalContent.draggable({
         handle: '.modal-header'
       });
-
     });
   }
 

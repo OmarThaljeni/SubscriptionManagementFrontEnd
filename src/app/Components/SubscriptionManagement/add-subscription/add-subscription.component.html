@@ -6,53 +6,57 @@
 </div>
 
 <div class="class-form">
-  <form class="form" [formGroup]="addForm" (ngSubmit)="addSubscriptionToUser(selectedCustomer)">
+  <form class="form" (ngSubmit)="addSubscriptionToUser()">
     <br>
     <h2>Interface d'ajout d'abonnement</h2>
     <br>
 
-
-
-    <div class="form-group">
-      <label for="adress">Type d'abonnement: </label>
-      <input id="Typeabonement" type="text" class="form-control" placeholder="Type d'abonnement"
-        formControlName="Typeabonement" #abon />
-    </div>
-
     <div>
-      <ng-select class="custom" [items]="arrayCustomer" bindLabel="firstname" (change)="checkValidateButton()"
-        [searchFn]="customSearchFn" clearAllText="Clear" placeholder="Client" [(ngModel)]="selectedCustomer"
-        [ngModelOptions]="{standalone: true}">
+      <ng-select class="custom" [items]="arrayTypeSubscription" bindLabel="name"
+        (change)="checkValidateButtonSubscription()" [searchFn]="customSearchFnSubscription" clearAllText="Clear"
+        placeholder="Type d'abonnement" [(ngModel)]="selectedTypeSubscription" [ngModelOptions]="{standalone: true}">
         <ng-template ng-label-tmp let-item="item">
-          <span>{{ item.firstname + ' ' + item.lastname }}</span>
+          <span>{{ item.id +'- '+item.name }}</span>
         </ng-template>
         <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
-          <span>{{ item.firstname + ' ' + item.lastname }}</span>
+          <span>{{ item.id +'- '+item.name }}</span>
         </ng-template>
-
       </ng-select>
+
+      <br>
+
+      <ng-select class="custom" [items]="arrayCustomer" bindLabel="firstname" (change)="checkValidateButtonCustomer()"
+        [searchFn]="customSearchFnCustomer" clearAllText="Clear" placeholder="Client" [(ngModel)]="selectedCustomer"
+        [ngModelOptions]="{standalone: true}">
+        <ng-template ng-label-tmp let-item="item">
+          <span>{{ item.id+'- '+item.firstname + ' ' + item.lastname }}</span>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+          <span>{{ item.id+'- '+item.firstname + ' ' + item.lastname }}</span>
+        </ng-template>
+      </ng-select>
+
+
     </div>
     <br>
 
     <div class="btnPosition">
-      <button class="raised-button btn btn-secondary" [disabled]="(addForm.invalid || !isValidSelectedCustomer)">
+      <button class="raised-button btn btn-secondary" [disabled]="(!isValidSelectedSubscription || !isValidSelectedCustomer)">
         <h5> <i class="fa fa-plus-circle"> </i> <strong> Ajouter abonné</strong></h5>
       </button>
     </div>
   </form>
-
-
   <br>
 
-  <div *ngIf=" !isValidSelectedCustomer && isClicked">
+  <div *ngIf=" !isValidSelectedCustomer && isClickedCustomer">
     <div class="alert alert-danger">
       Veuillez choisir un abonné
     </div>
   </div>
 
-  <div *ngIf=" Typeabonement.invalid && (Typeabonement.dirty || Typeabonement.touched) ">
-    <div class="alert alert-danger" *ngIf="Typeabonement.errors?.['required']">
-      Type d'abonnement est invalide
+  <div *ngIf=" !isValidSelectedSubscription && isClickedSubscription ">
+    <div class="alert alert-danger">
+      Veuillez choisir un type d'abonnement
     </div>
   </div>
 

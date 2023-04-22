@@ -76,7 +76,6 @@ export class CustomerListComponent implements OnInit {
     () => {
         this.getAllCustomers();
     });
-
   }
 
 

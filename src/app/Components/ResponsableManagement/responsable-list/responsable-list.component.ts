@@ -31,10 +31,8 @@ export class ResponsableListComponent implements OnInit {
   ELEMENT_DATA: Customer[];
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
 
-
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   dataSource: MatTableDataSource<Customer>;
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   filter = new FormControl('', []);
@@ -44,8 +42,6 @@ export class ResponsableListComponent implements OnInit {
       filter: this.filter,
     }
   );
-
-  buttonText: string = 'Open Modal';
 
   modalRef: any;
   modalOptions: NgbModalOptions = ModalConfig;
