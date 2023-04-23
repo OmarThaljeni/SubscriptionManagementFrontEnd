@@ -8,27 +8,31 @@ import { ModalConfig } from '../../ModelConfig/modal-config';
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
-import { AddSubscriptionComponent } from '../add-subscription/add-subscription.component';
+import { ClaimManagementService } from 'src/app/Services/ClaimService/claim-management.service';
+import { AddClaimComponent } from '../add-claim/add-claim.component';
 
-export interface Subscription {
+export interface Claims {
   id: string;
+  subject: string;
+  body: string;
+  priority: string;
   typeSubscription: string;
-  userSet: any[];
+  user: any;
 }
 
 @Component({
-  selector: 'app-list-subscription',
-  templateUrl: './list-subscription.component.html',
-  styleUrls: ['./list-subscription.component.css']
+  selector: 'app-claim-list',
+  templateUrl: './claim-list.component.html',
+  styleUrls: ['./claim-list.component.css']
 })
-export class ListSubscriptionComponent implements OnInit {
+export class ClaimListComponent implements OnInit {
 
-  ELEMENT_DATA: Subscription[];
-  displayedColumns: string[] = ['id', 'typeSubcription', 'idUser', 'firstname', 'lastname', 'adress', 'update', 'delete'];
+  ELEMENT_DATA: Claims[];
+  displayedColumns: string[] = ['id', 'subject', 'body', 'priority','status','delete'];
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
-  dataSource: MatTableDataSource<Subscription>;
+  dataSource: MatTableDataSource<Claims>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -46,30 +50,21 @@ export class ListSubscriptionComponent implements OnInit {
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor (private subscirpionManagementService: SubscirpionManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
+  constructor (private claimManagementService: ClaimManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
-    this.getAllSubscription();
+    this.getAllClaims();
   }
 
 
-  getAllSubscription() {
-    let resp = this.subscirpionManagementService.getAllSubscriptions();
+  getAllClaims() {
+    let resp = this.claimManagementService.getListClaims();
     resp.subscribe(
       response => {        
-        this.dataSource.data = response as Subscription[];
+        this.dataSource.data = response as Claims[];
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sortingDataAccessor = (item, property) => {
-          switch(property) {
-            case 'userSet[0].id': return item.userSet[0].id;
-            case 'userSet[0].firstname': return item.userSet[0].firstname;
-            case 'userSet[0].lastname': return item.userSet[0].lastname;
-            case 'userSet[0].adress': return item.userSet[0].adress;
-            default: return item[property];
-          }
-        };      
         this.dataSource.sort = this.sort;
       },
       error => {
@@ -77,13 +72,12 @@ export class ListSubscriptionComponent implements OnInit {
       });
   }
 
-
-  openAddSubscriptionModal() {
-    this.modalRef = this.modalService.open(AddSubscriptionComponent, this.modalOptions); 
+  openAddClaimsModal() {
+    this.modalRef = this.modalService.open(AddClaimComponent, this.modalOptions); 
     this.modalRef.result.then(() => {
     },
     () => {
-        this.getAllSubscription();
+        this.getAllClaims();
     });
     }
 
@@ -107,6 +101,22 @@ export class ListSubscriptionComponent implements OnInit {
     }
 
   };
+
+  deleteClaims(row) {
+    this.dialogService.openConfirmDialog('Vous etes sur de supprimer cette réclamation ?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.claimManagementService.deleteClaim(row.id).subscribe(() => {
+            this.dataSource.data = this.dataSource.data.filter(x => x.id !== row.id)
+            this.toastService.showSuccess();
+          },
+            () => {
+              this.toastService.showWarning();
+            })
+        }
+      });
+  }
+
 
 
 }

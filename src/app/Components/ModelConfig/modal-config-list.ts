@@ -1,7 +1,9 @@
 import { NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 
 export const ModalConfig: NgbModalOptions = {
-    size: 'lg',
+    size: 'xl',
     backdrop: 'static',
+    keyboard: true,
     scrollable:true,
+    centered : true
 }

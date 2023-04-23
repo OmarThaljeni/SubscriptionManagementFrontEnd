@@ -18,17 +18,17 @@ export class AddCustomerComponent implements OnInit {
   title: string = '';
   message: string = '';
 
-firstname = new FormControl('', [Validators.required, Validators.maxLength(20)]);
-lastname = new FormControl('', [Validators.required, Validators.maxLength(20)]);
-email = new FormControl('', [Validators.required, Validators.email]);
-adress = new FormControl('', [Validators.required, Validators.maxLength(80)]);
-phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")]);
+  firstname = new FormControl('', [Validators.required, Validators.maxLength(20)]);
+  lastname = new FormControl('', [Validators.required, Validators.maxLength(20)]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  adress = new FormControl('', [Validators.required, Validators.maxLength(80)]);
+  phone = new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")]);
 
 
-  constructor(private modalService: NgbModal,private customerManagementService : CustomerManagementService,private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService : ToastService) {}
+  constructor(private modalService: NgbModal, private customerManagementService: CustomerManagementService, private activeModal: NgbActiveModal, private formBuilder: FormBuilder, private toastService: ToastService) { }
 
   ngOnInit() {
-    $(document).ready(function() {
+    $(document).ready(function () {
       let modalContent: any = $('.modal-content');
       let modalHeader = $('.modal-header');
       modalHeader.addClass('cursor-all-scroll');
@@ -41,30 +41,30 @@ phone= new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{8}")
 
   addForm = this.formBuilder.group(
     {
-      firstname : this.firstname,
-      lastname : this.lastname,
-      email : this.email,
-      phone : this.phone,
-      adress : this.adress,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      email: this.email,
+      phone: this.phone,
+      adress: this.adress,
     }
   );
-  
-  addCustomer(credentials: any) {    
+
+  addCustomer(credentials: any) {
     this.customerManagementService.addCustomer(credentials).subscribe(() => {
       this.toastService.showSuccess();
       this.modalService.dismissAll();
     },
       error => {
-        console.log(error); 
+        console.log(error);
       }
     )
-    
+
   }
-  
+
   showSuccess() {
-  this.toastService.show('Inscription réussi !', { classname: 'bg-success text-light', delay: 4500 ,autohide: true});
+    this.toastService.show('Inscription réussi !', { classname: 'bg-success text-light', delay: 4500, autohide: true });
   }
-  
+
   close() {
     this.activeModal.close();
     this.onSubmitSubject.next(true);

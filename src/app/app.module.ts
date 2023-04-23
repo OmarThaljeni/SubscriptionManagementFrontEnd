@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsContainerComponent } from './Components/toast-container/toasts-container.component';
+import { ToastsContainerComponent } from './Components/Toast-container/toasts-container.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomerListComponent } from './Components/CustomerManagement/customer-list/customer-list.component';
 import { MatTableModule } from '@angular/material/table'
@@ -21,10 +21,10 @@ import 'hammerjs';
 import { AddCustomerComponent } from './Components/CustomerManagement/add-customer/add-customer.component';
 import { UpdateCustomerComponent } from './Components/CustomerManagement/update-customer/update-customer.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatConfirmDialogComponent } from './Components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatConfirmDialogComponent } from './Components/Mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from './Components/Material/material.module';
-import { PresentationComponent } from './Components/home/presentation.component';
+import { PresentationComponent } from './Components/Home/presentation.component';
 import { loginInterceptorProvider } from './Services/AuthService/login-interceptor';
 import { ResponsableListComponent } from './Components/ResponsableManagement/responsable-list/responsable-list.component';
 import { AddResponsableComponent } from './Components/ResponsableManagement/add-responsable/add-responsable.component';
@@ -34,6 +34,10 @@ import { AddSubscriptionComponent } from './Components/SubscriptionManagement/ad
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSelectModule } from '@angular/material/select';
 import {NgSelectModule} from '@ng-select/ng-select';
+import { SubscriptionListByCustomerComponent } from './Components/CustomerManagement/subscription-list-by-customer/subscription-list-by-customer.component';
+import { ClaimListComponent } from './Components/ClaimsManagement/claim-list/claim-list.component';
+import { AddClaimComponent } from './Components/ClaimsManagement/add-claim/add-claim.component';
+import { UpdateClaimComponent } from './Components/ClaimsManagement/update-claim/update-claim.component';
 
 
 @NgModule({
@@ -51,7 +55,11 @@ import {NgSelectModule} from '@ng-select/ng-select';
     AddResponsableComponent,
     UpdateResponsableComponent,
     ListSubscriptionComponent,
-    AddSubscriptionComponent
+    AddSubscriptionComponent,
+    SubscriptionListByCustomerComponent,
+    ClaimListComponent,
+    AddClaimComponent,
+    UpdateClaimComponent
   ],
   imports: [
     BrowserModule,

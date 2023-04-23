@@ -10,6 +10,7 @@ import { ModalConfig } from '../../ModelConfig/modal-config';
 import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
+import { SubscriptionListByCustomerComponent } from '../subscription-list-by-customer/subscription-list-by-customer.component';
 
 export interface Customer {
   id: string;
@@ -29,7 +30,7 @@ export interface Customer {
 export class CustomerListComponent implements OnInit {
 
   ELEMENT_DATA: Customer[];
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
+  displayedColumns: string[] = ['see','id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
 
 
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
@@ -78,6 +79,16 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
+  openListCustomerById(row) {
+    this.modalRef = this.modalService.open(SubscriptionListByCustomerComponent, this.modalOptions);
+    this.modalRef.componentInstance.fromParent = row;
+    this.modalRef.result.then(() => {
+    },
+    () => {
+        this.getAllCustomers();
+    });
+
+    }
 
   getAllCustomers() {
     let resp = this.customerManagementService.getListCustomers();

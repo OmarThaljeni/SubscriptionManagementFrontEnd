@@ -1,11 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, Subject, startWith } from 'rxjs';
+import {Subject } from 'rxjs';
 import * as $ from "jquery";
 import 'jqueryui';
-import { FormBuilder, FormControl, NgModel, Validators } from '@angular/forms';
+import {  FormControl, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
-import { Customer } from '../../CustomerManagement/customer-list/customer-list.component';
 import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
 import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
 

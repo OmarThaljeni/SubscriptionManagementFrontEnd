@@ -1,0 +1,96 @@
+<div class="modal-header">
+  <span>{{ title }}</span>
+  <button type="button" class="btn btn-light btn-sm" (click)="close()" aria-hidden="true">
+    X
+  </button>
+</div>
+
+<div class="class-form">
+  <form class="form" (ngSubmit)="addClaimToUser()">
+    <br>
+    <h2>Interface du réclamation</h2>
+    <br>
+
+
+    <div class="form-group">
+      <label for="subject">Sujet du réclamation: </label>
+      <input [(ngModel)]="this.selectedSubject" [ngModelOptions]="{standalone: true}" id="subject" type="text"
+        class="form-control" placeholder="Sujet du réclamation" (input)="checkValidateSubject()" />
+    </div>
+
+    <div class="form-group">
+      <label for="contenu">Contenu du réclamation: </label>
+      <textarea [(ngModel)]="this.selectedContenu" [ngModelOptions]="{standalone: true}" class="form-control"
+        id="contenu" rows="3" placeholder="Contenu du réclamation" (input)="checkValidateBody()"></textarea>
+    </div>
+
+
+    <br>
+
+
+
+
+
+    <div>
+      <ng-select class="custom" [items]="arrayPriority" bindLabel="name" (change)="checkValidateButtonSubscription()"
+        [searchFn]="customSearchFnSubscription" clearAllText="Clear" placeholder="Priorité du réclamation"
+        [(ngModel)]="selectedClaim" [ngModelOptions]="{standalone: true}">
+        <ng-template ng-label-tmp let-item="item">
+          <span>{{ item.id +'- '+item.name }}</span>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+          <span>{{ item.id +'- '+item.name }}</span>
+        </ng-template>
+      </ng-select>
+
+      <br>
+    </div>
+
+
+    <br>
+
+    <div class="btnPosition">
+      <button class="raised-button btn btn-secondary" [disabled]="(!isValidSelectedSubscription)">
+        <strong> Ajouter réclamation</strong>
+      </button>
+    </div>
+  </form>
+  <br>
+
+
+  <div *ngIf=" !isValidSelectedSubscription && isClickedSubscription ">
+    <div class="alert alert-danger">
+      Veuillez choisir la priorité du réclamation
+    </div>
+  </div>
+
+  <div *ngIf=" !isValidSelectedSubject && isClickedSubject ">
+    <div class="alert alert-danger">
+      Veuillez choisir le sujet du réclamation
+    </div>
+  </div>
+
+  <div *ngIf=" !isValidSelectedBody && isClickedBody ">
+    <div class="alert alert-danger">
+      Veuillez choisir le contenu du réclamation
+    </div>
+  </div>
+
+
+</div>
+
+
+<!--   <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div [innerHTML]='message'>
+          </div>
+        </div>
+      </div>
+    </div>
+   -->
+<div class="modal-footer">
+  <span class="pull-right" style="padding-right:2%">
+    <button type="button" class="btn btn-light btn-sm" (click)="close()" id="btnCancel">Fermer</button>
+  </span>
+</div>

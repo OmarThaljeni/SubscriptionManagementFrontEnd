@@ -3,6 +3,7 @@ div.main {
     margin-right: 5px;
     position: relative;
 }
+
 .has-search .form-control {
     padding-left: 2.375rem;
 }
@@ -20,26 +21,32 @@ div.main {
 }
 
 
-.icon-update
-{
-  color: #5cb85c;
+.icon-update {
+    color: #5cb85c;
 }
 
-.icon-delete 
-{
+.icon-delete {
     color: rgb(196, 16, 16);
-}
-
-.icon-see {
-    color: blueviolet;
 }
 
 .mat-row {
     height: auto;
-  }
-  
-  
-  .form-control
- {  
-    height:50px;
- }
+}
+
+
+.form-control {
+    height: 50px;
+}
+
+
+.make-green {
+    background-color: #5cb85c;
+}
+
+.make-red {
+    background-color: rgb(240, 122, 122)
+}
+
+.make-yellow {
+    background-color: rgb(255, 253, 162)
+}

@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfig } from '../../ModelConfig/modal-config';
-import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
-import { AddSubscriptionComponent } from '../add-subscription/add-subscription.component';
+import { Subject } from 'rxjs';
+import * as $ from "jquery";
+import 'jqueryui';
 
 export interface Subscription {
   id: string;
@@ -17,14 +18,17 @@ export interface Subscription {
 }
 
 @Component({
-  selector: 'app-list-subscription',
-  templateUrl: './list-subscription.component.html',
-  styleUrls: ['./list-subscription.component.css']
+  selector: 'app-subscription-list-by-customer',
+  templateUrl: './subscription-list-by-customer.component.html',
+  styleUrls: ['./subscription-list-by-customer.component.css']
 })
-export class ListSubscriptionComponent implements OnInit {
-
+export class SubscriptionListByCustomerComponent implements OnInit {
+  
+  @Output() onSubmitSubject: Subject<boolean> = new Subject<boolean>();
   ELEMENT_DATA: Subscription[];
-  displayedColumns: string[] = ['id', 'typeSubcription', 'idUser', 'firstname', 'lastname', 'adress', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'typeSubcription', 'fullname', 'update', 'delete'];
+  title: string = '';
+  message: string = '';
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -44,19 +48,29 @@ export class ListSubscriptionComponent implements OnInit {
 
   modalRef: any;
   modalOptions: NgbModalOptions = ModalConfig;
+  @Input() fromParent;
 
 
-  constructor (private subscirpionManagementService: SubscirpionManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
+  constructor(private activeModal: NgbActiveModal,private subscirpionManagementService: SubscirpionManagementService, private toastService: ToastService, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit() {
-    this.getAllSubscription();
+    this.getAllSubscriptionsByCustomer();
+    $(document).ready(function () {
+      let modalContent: any = $('.modal-content');
+      let modalHeader = $('.modal-header');
+      modalHeader.addClass('cursor-all-scroll');
+      modalContent.draggable({
+        handle: '.modal-header'
+      });
+
+    });
   }
 
 
-  getAllSubscription() {
-    let resp = this.subscirpionManagementService.getAllSubscriptions();
+  getAllSubscriptionsByCustomer() {
+    let resp = this.subscirpionManagementService.getAllSubscriptionByCustomer(this.fromParent.id);
     resp.subscribe(
       response => {        
         this.dataSource.data = response as Subscription[];
@@ -76,16 +90,6 @@ export class ListSubscriptionComponent implements OnInit {
         console.log(error);
       });
   }
-
-
-  openAddSubscriptionModal() {
-    this.modalRef = this.modalService.open(AddSubscriptionComponent, this.modalOptions); 
-    this.modalRef.result.then(() => {
-    },
-    () => {
-        this.getAllSubscription();
-    });
-    }
 
 
   applyFilter(filterValue: Event) {
@@ -108,6 +112,10 @@ export class ListSubscriptionComponent implements OnInit {
 
   };
 
+  close() {
+    this.activeModal.close();
+    this.onSubmitSubject.next(true);
+  }
 
 }
 
