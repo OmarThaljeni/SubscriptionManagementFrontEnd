@@ -9,6 +9,7 @@ import { PresentationComponent } from './Components/Home/presentation.component'
 import { ResponsableListComponent } from './Components/ResponsableManagement/responsable-list/responsable-list.component';
 import { ListSubscriptionComponent } from './Components/SubscriptionManagement/list-subscription/list-subscription.component';
 import { ClaimListComponent } from './Components/ClaimsManagement/claim-list/claim-list.component';
+import { ListServiceCniComponent } from './Components/ServiceCniManagement/list-service-cni/list-service-cni.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'list-subscription', component:ListSubscriptionComponent,canActivate:[AuthentificationGuard]},
       { path: 'cni-presentation', component:PresentationComponent,canActivate:[AuthentificationGuard]},
       { path: 'list-claim', component:ClaimListComponent,canActivate:[AuthentificationGuard]},
+      { path: 'list-service-cni', component:ListServiceCniComponent,canActivate:[AuthentificationGuard]},
   ]},
   
 ];

@@ -1,0 +1,150 @@
+<div class="modal-header">
+    <span>{{ title }}</span>
+    <button type="button" class="btn btn-light btn-sm" (click)="close()" aria-hidden="true">
+      X
+    </button>
+  </div>
+  
+  <div class="class-form">
+    <form class="form" (ngSubmit)="addService()">
+      <br>
+      <h2>Ajout du service</h2>
+      <br>
+  
+      <div class="flex-parent-element">
+        <div class="flex-child-element-type">
+          <ng-select class="custom" [items]="arrayTypeService" bindLabel="name" [searchFn]="customSearchFnService" clearAllText="Clear"
+         (change)="checkValidateTypeService()" placeholder="Type de service" [(ngModel)]="selectedTypeService" [ngModelOptions]="{standalone: true}">
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+        </ng-select>
+        </div>
+        <div class="flex-child-element-model">
+          <ng-select class="custom" [items]="arrayModelService" bindLabel="name" [searchFn]="customSearchFnService" clearAllText="Clear"
+          (change)="checkValidateModelService()" placeholder="Model de service" [(ngModel)]="selectedModelService" [ngModelOptions]="{standalone: true}">
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+        </ng-select>
+        </div>
+  
+
+
+
+
+
+
+      </div>
+      <br>
+
+
+      <div class="flex-parent-element">
+        <div class="flex-child-element-nom">
+          <ng-select class="custom" [items]="arrayNomPc" bindLabel="name" [searchFn]="customSearchFnService" clearAllText="Clear"
+          (change)="checkValidateNomPc()" placeholder="Nom du pc" [(ngModel)]="selectedNomPc" [ngModelOptions]="{standalone: true}">
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+        </ng-select>
+        </div>
+        <div class="flex-child-element-ram">
+          <ng-select class="custom" [items]="arrayRamPc" bindLabel="name" [searchFn]="customSearchFnService" clearAllText="Clear"
+       (change)="checkValidateRamPc()"   placeholder="Ram" [(ngModel)]="selectedRamPc" [ngModelOptions]="{standalone: true}">
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+            <span>{{ item.id +'- '+item.name }}</span>
+          </ng-template>
+        </ng-select>
+        </div>
+      </div>
+<br>
+
+<div>
+  <div class="flex-child-element-nom">
+    <ng-select class="custom" [items]="arrayCpu" bindLabel="name" [searchFn]="customSearchFnService" clearAllText="Clear"
+  (change)="checkValidateCpu()"  placeholder="CPU" [(ngModel)]="selectedCpu" [ngModelOptions]="{standalone: true}">
+    <ng-template ng-label-tmp let-item="item">
+      <span>{{ item.id +'- '+item.name }}</span>
+    </ng-template>
+    <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+      <span>{{ item.id +'- '+item.name }}</span>
+    </ng-template>
+  </ng-select>
+  </div>
+
+</div>
+  
+  <br>
+  <br>
+  
+      <div class="btnPosition">
+        <button class="raised-button btn btn-secondary">
+          <strong> Ajouter service</strong>
+        </button>
+      </div>
+    </form>
+    <br>
+  
+  
+    <div *ngIf=" !isValidatedTypeService && isClickedTypeService ">
+      <div class="alert alert-danger">
+        Veuillez choisir le type de service
+      </div>
+    </div>
+  
+    
+  
+    <div *ngIf=" !isValidatedModelService && isClickedModelService ">
+      <div class="alert alert-danger">
+        Veuillez choisir le model de service
+      </div>
+    </div>
+
+    <div *ngIf=" !isValidatedNomPc && isClickedNomPc ">
+      <div class="alert alert-danger">
+        Veuillez choisir le nom du pc
+      </div>
+    </div>
+
+    <div *ngIf=" !isValidatedRamPc && isClickedRamPc ">
+      <div class="alert alert-danger">
+        Veuillez choisir le RAM du pc
+      </div>
+    </div>
+  
+
+    <div *ngIf=" !isValidatedCpu && isClickedCpu ">
+      <div class="alert alert-danger">
+        Veuillez choisir le CPU du pc
+      </div>
+    </div>
+
+  </div>
+  
+  
+  <!--   <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div [innerHTML]='message'>
+            </div>
+          </div>
+        </div>
+      </div>
+     -->
+  <div class="modal-footer">
+    <span class="pull-right" style="padding-right:2%">
+      <button type="button" class="btn btn-light btn-sm" (click)="close()" id="btnCancel">Fermer</button>
+    </span>
+  </div>

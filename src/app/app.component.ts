@@ -48,4 +48,10 @@ goToListClaim(){
   this.router.navigate(link)
 }
 
+goToListServiceCni(){
+  const link = ['/SubscriptionManagement/list-service-cni'];
+  this.router.navigate(link)
+}
+
+
 }
