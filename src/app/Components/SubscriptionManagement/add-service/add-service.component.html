@@ -8,12 +8,11 @@
 <div class="class-form">
   <form class="form" (ngSubmit)="addSubscriptionToUserService()">
     <br>
-    <h2>Interface d'ajout d'abonnement</h2>
+    <h2>Ajout d'un service a une abonnement</h2>
     <br>
 
     <div>
-      <ng-select class="custom" [items]="arrayTypeSubscription" bindLabel="name"
-        (change)="checkValidateButtonSubscription()" [searchFn]="customSearchFnSubscription" clearAllText="Clear"
+      <ng-select class="custom" [items]="arrayTypeSubscription" bindLabel="name" [disabled]="true"clearAllText="Clear"
         placeholder="Type d'abonnement" [(ngModel)]="selectedTypeSubscription" [ngModelOptions]="{standalone: true}">
         <ng-template ng-label-tmp let-item="item">
           <span>{{ item.id +'- '+item.name }}</span>
@@ -25,8 +24,7 @@
 
       <br>
 
-      <ng-select class="custom" [items]="arrayCustomer" bindLabel="firstname" (change)="checkValidateButtonCustomer()"
-        [searchFn]="customSearchFnCustomer" clearAllText="Clear" placeholder="Client" [(ngModel)]="selectedCustomer"
+      <ng-select class="custom" [disabled]="true" clearAllText="Clear" placeholder="Client" [(ngModel)]="selectedCustomer"
         [ngModelOptions]="{standalone: true}">
         <ng-template ng-label-tmp let-item="item">
           <span>{{ item.id+'- '+item.firstname + ' ' + item.lastname }}</span>
@@ -56,22 +54,16 @@
 
     <div class="btnPosition">
       <button class="raised-button btn btn-secondary"
-        [disabled]="(!isValidSelectedSubscription || !isValidSelectedCustomer)">
+        [disabled]="!isValidService">
         <h5> <i class="fa fa-plus-circle"> </i> <strong> Ajouter abonné</strong></h5>
       </button>
     </div>
   </form>
   <br>
 
-  <div *ngIf=" !isValidSelectedCustomer && isClickedCustomer">
+  <div *ngIf=" !isValidService && isClickedService">
     <div class="alert alert-danger">
-      Veuillez choisir un abonné
-    </div>
-  </div>
-
-  <div *ngIf=" !isValidSelectedSubscription && isClickedSubscription ">
-    <div class="alert alert-danger">
-      Veuillez choisir un type d'abonnement
+      Veuillez choisir un service
     </div>
   </div>
 

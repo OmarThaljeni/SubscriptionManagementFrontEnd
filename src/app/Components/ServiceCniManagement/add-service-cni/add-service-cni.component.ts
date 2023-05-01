@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import * as $ from "jquery";
 import 'jqueryui';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
+import { CniManagementService } from 'src/app/Services/ServiceCniManagement/cni-management.service';
 
 
 @Component({
@@ -64,10 +65,10 @@ export class AddServiceCniComponent implements OnInit {
     { id: 1, name: '2GO' },
     { id: 2, name: '4GO' },
     { id: 3, name: '8GO', },
-    { id: 4, name: '16GP', },
-    { id: 5, name: '32GP', },
-    { id: 6, name: '64GP', },
-    { id: 7, name: '128GP', },
+    { id: 4, name: '16GO', },
+    { id: 5, name: '32GO', },
+    { id: 6, name: '64GO', },
+    { id: 7, name: '128GO', },
   ];
 
   arrayCpu = [
@@ -78,7 +79,7 @@ export class AddServiceCniComponent implements OnInit {
     { id: 5, name: 'i9', },
   ];
 
-  constructor(private activeModal: NgbActiveModal, private toastService: ToastService) { }
+  constructor(private modalService: NgbModal,private cniManagementService:CniManagementService,private activeModal: NgbActiveModal, private toastService: ToastService) { }
 
   ngOnInit() {
     $(document).ready(function () {
@@ -109,8 +110,25 @@ export class AddServiceCniComponent implements OnInit {
   }
 
 
-  addService() {
+  addServiceCni() {
+    const credentials = {
+      typeService : this.selectedTypeService.name,
+      modelService : this.selectedModelService.name,
+      namePc : this.selectedNomPc.name,
+      ramPc : this.selectedRamPc.name,
+      cpuPc: this.selectedCpu.name
+    }
 
+    let resp = this.cniManagementService.addServiceCni(credentials);
+    resp.subscribe( ()=> {
+      this.toastService.showSuccess();
+      this.modalService.dismissAll();
+    },
+      error => {
+        console.log(error); 
+      }
+    )
+    
 
   }
 

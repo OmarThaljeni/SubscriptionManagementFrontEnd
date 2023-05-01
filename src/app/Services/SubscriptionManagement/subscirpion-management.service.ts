@@ -19,8 +19,8 @@ export class SubscirpionManagementService {
     return this.http.get(get_list_sub_url);
   }
 
-  addSubscription(id,credentials): Observable<any> {
-    return this.http.post(`${add_subscription_url}/${id}`,credentials);
+  addSubscription(idCustomer,idService,credentials): Observable<any> {
+    return this.http.post(`${add_subscription_url}/${idCustomer}/${idService}`,credentials);
   }
 
   getAllSubscriptionByCustomer(id){

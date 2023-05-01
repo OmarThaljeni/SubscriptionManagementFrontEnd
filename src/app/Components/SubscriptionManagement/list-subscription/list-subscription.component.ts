@@ -9,6 +9,8 @@ import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
 import { AddSubscriptionComponent } from '../add-subscription/add-subscription.component';
+import { AddServiceCniComponent } from '../../ServiceCniManagement/add-service-cni/add-service-cni.component';
+import { AddServiceComponent } from '../add-service/add-service.component';
 
 export interface Subscription {
   id: string;
@@ -24,7 +26,7 @@ export interface Subscription {
 export class ListSubscriptionComponent implements OnInit {
 
   ELEMENT_DATA: Subscription[];
-  displayedColumns: string[] = ['id', 'typeSubcription', 'idUser', 'firstname', 'lastname', 'adress', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'typeSubcription', 'idUser', 'fullName', 'adress','nbService','update', 'delete'];
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -87,6 +89,15 @@ export class ListSubscriptionComponent implements OnInit {
     });
     }
 
+    openAddServiceModal(row) {
+      this.modalRef = this.modalService.open(AddServiceComponent, this.modalOptions);
+      this.modalRef.componentInstance.fromParent = row;
+      this.modalRef.result.then(() => {
+      },
+      () => {
+          this.getAllSubscription();
+      });
+      }
 
   applyFilter(filterValue: Event) {
     this.dataSource.filter = filterValue.toString().trim().toLowerCase();
@@ -107,6 +118,7 @@ export class ListSubscriptionComponent implements OnInit {
     }
 
   };
+
 
 
 }

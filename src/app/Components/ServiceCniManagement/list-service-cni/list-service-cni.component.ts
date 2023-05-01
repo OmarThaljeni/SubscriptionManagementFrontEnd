@@ -10,14 +10,15 @@ import { ModalConfig } from '../../ModelConfig/modal-config';
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { AddServiceCniComponent } from '../add-service-cni/add-service-cni.component';
+import { CniManagementService } from 'src/app/Services/ServiceCniManagement/cni-management.service';
 
-export interface Claims {
+export interface CniService {
   id: string;
-  subject: string;
-  body: string;
-  priority: string;
-  typeSubscription: string;
-  user: any;
+  typeService: string;
+  modelService: string;
+  namePc: string;
+  ramPc: string;
+  cpuPc: any;
 }
 
 @Component({
@@ -27,12 +28,12 @@ export interface Claims {
 })
 export class ListServiceCniComponent implements OnInit {
 
-  ELEMENT_DATA: Claims[];
+  ELEMENT_DATA: CniService[];
   displayedColumns: string[] = ['id', 'typeService', 'modelService', 'namePc','ramPc','cpuPc','delete'];
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
-  dataSource: MatTableDataSource<Claims>;
+  dataSource: MatTableDataSource<CniService>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -50,7 +51,7 @@ export class ListServiceCniComponent implements OnInit {
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor ( private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
+  constructor (private cniManagementService:CniManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -60,6 +61,17 @@ export class ListServiceCniComponent implements OnInit {
 
 
   getAllServices() {
+    let resp = this.cniManagementService.getListServices();
+    resp.subscribe(
+      response => {        
+        this.dataSource.data = response as CniService[];
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error => {
+        console.log(error);
+      });
+
 
   }
 
