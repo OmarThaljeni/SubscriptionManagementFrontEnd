@@ -11,6 +11,8 @@ import { UpdateCustomerComponent } from '../update-customer/update-customer.comp
 import { DialogService } from 'src/app/Services/Notification/dialog.service';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { SubscriptionListByCustomerComponent } from '../subscription-list-by-customer/subscription-list-by-customer.component';
+import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
+import { error } from 'jquery';
 
 export interface Customer {
   id: string;
@@ -30,7 +32,7 @@ export interface Customer {
 export class CustomerListComponent implements OnInit {
 
   ELEMENT_DATA: Customer[];
-  displayedColumns: string[] = ['see','id', 'firstname', 'lastname', 'email', 'phone', 'adress', 'update', 'delete'];
+  displayedColumns: string[] = ['see','accepte' ,'id', 'firstname', 'lastname', 'email', 'phone', 'adress','status', 'update', 'delete'];
 
 
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
@@ -47,12 +49,12 @@ export class CustomerListComponent implements OnInit {
   );
 
   buttonText: string = 'Open Modal';
-
+  tabAbon : any;
   modalRef: any;
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor(private modalService: NgbModal,private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder, private customerManagementService: CustomerManagementService) {
+  constructor(private subscirpionManagementService : SubscirpionManagementService,private modalService: NgbModal,private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder, private customerManagementService: CustomerManagementService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -80,13 +82,22 @@ export class CustomerListComponent implements OnInit {
   }
 
   openListCustomerById(row) {
-    this.modalRef = this.modalService.open(SubscriptionListByCustomerComponent, this.modalOptions);
-    this.modalRef.componentInstance.fromParent = row;
-    this.modalRef.result.then(() => {
-    },
-    () => {
-        this.getAllCustomers();
-    });
+    let resp = this.subscirpionManagementService.getAllSubscriptionByCustomer(row.id);
+    resp.subscribe(res => {     
+        this.tabAbon = res;
+        if(this.tabAbon.length>0) {
+          this.modalRef = this.modalService.open(SubscriptionListByCustomerComponent, this.modalOptions);
+          this.modalRef.componentInstance.fromParent = row;
+          this.modalRef.result.then(() => {
+          },
+          () => {
+              this.getAllCustomers();
+          });      
+        } else {
+          this.toastService.showCannotOpenListSubscription();
+        }
+    })
+
 
     }
 
@@ -123,23 +134,54 @@ export class CustomerListComponent implements OnInit {
 
 
   deleteCustomer(row) {
-    this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
-      .afterClosed().subscribe(res => {
-        if (res) {
-          this.customerManagementService.deleteUser(row.id).subscribe(() => {
-            this.dataSource.data = this.dataSource.data.filter(x => x.id !== row.id)
-            this.toastService.showSuccess();
-          },
-            () => {
-              this.toastService.showWarning();
-            })
-        }
-      });
+    let resp = this.subscirpionManagementService.getAllSubscriptionByCustomer(row.id);
+    resp.subscribe(res => {      
+      this.tabAbon = res;
+      if(this.tabAbon?.length>0) {
+        this.toastService.showCannotDeleteCustomer();
+      } else {
+
+        this.dialogService.openConfirmDialog('Vous etes sur de supprimer ce client ?')
+        .afterClosed().subscribe(res => {
+          if (res) {
+            this.customerManagementService.deleteUser(row.id).subscribe(() => {
+              this.dataSource.data = this.dataSource.data.filter(x => x.id !== row.id)
+              this.toastService.showSuccess();
+            },
+              () => {
+                this.toastService.showWarning();
+              })
+          }
+        });
+      }
+      
+    })
   }
 
-
-
+AcceptOrDeclineCustomer(row) {
+  if(row.status === 'Accepté') {
+    this.toastService.showCannotAcceptCustomer();
+  } 
+  else {
+  this.dialogService.openConfirmDialog('Vous etes sur d accepter ce client ?')
+  .afterClosed().subscribe(res => { 
+    if(res) {
+      this.customerManagementService.acceptCustomer(row.id).subscribe(()=> {        
+        this.toastService.showSuccess();
+        this.getAllCustomers();
+      })
+    } 
+    () => {
+      error => {
+        console.log(error);
+        this.toastService.showWarning();
+      
+      }
+  }})
+  }
+}
 
 }
 
-
+   
+  

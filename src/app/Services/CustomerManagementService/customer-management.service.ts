@@ -18,7 +18,7 @@ const add_responsable_url = 'http://localhost:8090/SubscriptionManagement/add-re
 
 const update_responsable_url = 'http://localhost:8090/SubscriptionManagement/update-responsable'
 
-
+const accept_customer_url = 'http://localhost:8090/SubscriptionManagement/accept-customer'
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,10 @@ export class CustomerManagementService {
     return this.http.put(`${update_responsable_url}/${id}`,credentials);
   }
 
+  acceptCustomer(id): Observable<any> {
+    return this.http.put(`${accept_customer_url}/${id}`,null);
+  }
 
+  
 
 }

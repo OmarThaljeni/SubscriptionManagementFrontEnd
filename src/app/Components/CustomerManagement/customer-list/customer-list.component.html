@@ -24,49 +24,60 @@
   
       <ng-container matColumnDef="see">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-        <td mat-cell *matCellDef="let row" > 
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> 
           <button class="icon-see" mat-icon-button color="warn" (click)="openListCustomerById(row)"><mat-icon>card_membership</mat-icon></button>
+      </ng-container>
+
+      <ng-container matColumnDef="accepte">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> 
+          <button class="icon-add" mat-icon-button color="warn" (click)="AcceptOrDeclineCustomer(row)"><mat-icon>note_add</mat-icon></button>
       </ng-container>
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row?.id}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> {{row?.id}} </td>
       </ng-container>
   
       <ng-container matColumnDef="firstname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
-        <td mat-cell *matCellDef="let row"> {{row?.firstname}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> {{row?.firstname}} </td>
       </ng-container>
   
       <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-        <td mat-cell *matCellDef="let row"> {{row?.lastname}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> {{row?.lastname}} </td>
       </ng-container>
   
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-        <td mat-cell *matCellDef="let row" > {{row?.email}} </td>
+        <td mat-cell *matCellDef="let row"[ngClass]="{'make-yellow': row.status === 'En attente'}" > {{row?.email}} </td>
       </ng-container>
   
       <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Télephone </th>
-        <td mat-cell *matCellDef="let row" > {{row?.phone}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> {{row?.phone}} </td>
       </ng-container>
 
       <ng-container matColumnDef="adress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
-        <td mat-cell *matCellDef="let row" > {{row?.adress}} </td>
+        <td mat-cell *matCellDef="let row"[ngClass]="{'make-yellow': row.status === 'En attente'}" > {{row?.adress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Etat du client </th>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> {{row?.status}} </td>
       </ng-container>
 
       <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-        <td mat-cell *matCellDef="let row" > 
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}" > 
           <button class="icon-update" mat-icon-button (click)="openUpdateCustomerModal(row)"><mat-icon>system_update_alt</mat-icon></button>
       </ng-container>
 
-      <ng-container matColumnDef="delete">
+      <ng-container matColumnDef="delete" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-        <td mat-cell *matCellDef="let row" > 
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-yellow': row.status === 'En attente'}"> 
           <button class="icon-delete" mat-icon-button color="warn" (click)="deleteCustomer(row)"><mat-icon>delete</mat-icon></button>
       </ng-container>
 
