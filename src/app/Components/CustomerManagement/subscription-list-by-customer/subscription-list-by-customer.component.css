@@ -63,3 +63,125 @@ div.main {
     margin-right: 10px;
     margin-bottom: 10px;
   }
+  div.main {
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+
+.icon-update {
+    color: #5cb85c;
+}
+
+.icon-delete {
+    color: rgb(196, 16, 16);
+}
+
+.mat-row {
+    height: auto;
+}
+
+
+.form-control {
+    height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+tr.example-detail-row {
+    height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: #777;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+}
+
+.example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+.inner-table {
+    width: 100%;
+}
+
+.inner-table mat-form-field {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.make-green {
+    background-color: #5cb85c;
+}
+
+.make-red {
+    background-color: rgb(240, 122, 122)
+}
+
+.make-yellow {
+    background-color: rgb(255, 253, 162)
+}
+
+
+.make-background {
+    background-color: rgb(134, 134, 116)
+}
+
+.make-body {
+    background-color: rgb(226, 226, 213)
+}

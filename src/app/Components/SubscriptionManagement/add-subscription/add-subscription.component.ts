@@ -41,9 +41,7 @@ export class AddSubscriptionComponent implements OnInit {
   arrayTypeSubscription = [
     { id: 1, name: 'Abonnement basique' },
     { id: 2, name: 'Abonnement professionnel' },
-    { id: 3, name: 'Abonnement Normal', },
-    { id: 4, name: 'Disabled Abonnement' }
-  ];
+    { id: 3, name: 'Abonnement normal', }  ];
 
   constructor(private cniManagementService: CniManagementService,private subscriptionManagementService:SubscirpionManagementService,private customerManagementService: CustomerManagementService, private modalService: NgbModal, private activeModal: NgbActiveModal, private toastService: ToastService) { }
 
@@ -110,7 +108,7 @@ export class AddSubscriptionComponent implements OnInit {
     const subscription = {'typeSubcription':this.selectedTypeSubscription.name}
     const idCustomer = this.selectedCustomer.id;
     const idService = this.selectedService.id;
-    let resp = this.subscriptionManagementService.addSubscription(idCustomer,idService,subscription);
+    let resp = this.subscriptionManagementService.addSubscriptionToUser(idCustomer,idService,subscription);
     resp.subscribe( ()=> {
       this.toastService.showSuccess();
       this.modalService.dismissAll();

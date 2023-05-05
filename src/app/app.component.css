@@ -99,3 +99,10 @@ p {
 .nav-item {
     margin-left: 1620px;
 }
+
+
+i strong {
+    position: relative;
+    left: 10px;
+  }
+  

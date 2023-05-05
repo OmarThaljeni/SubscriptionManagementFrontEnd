@@ -42,6 +42,11 @@
           </div>
         </div>
 
+        <div *ngIf=" failedLogin ">
+          <div class="alert alert-danger">
+            Veuillez vérifier votre credentials ou bien votre serveur
+          </div>
+        </div>
 
         <div class="text-center sign-up">
           Don`t have an account ? <a routerLink="/SubscriptionManagement/register">Sign Up</a> here.

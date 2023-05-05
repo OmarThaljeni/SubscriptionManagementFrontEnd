@@ -17,19 +17,20 @@
 
     <br>
   </div>
-<br>
+  <br>
 
 
   <div class="row">
     <div class="col-sm-3" *ngIf="loginService.isLoggedIn()">
       <div class="sidebar-content">
-        <div (click)="goToHome()">Acceuil</div>
-        <div (click)="goToListCustomer()">Gestion des clients</div>
-        <div (click)="goToListResponsable()">Gestion des responsables</div>
-        <div (click)="goToListSubscription()">Gestion des abonnements</div>
-        <div (click)="goToListClaim()">Gestion des réclamations</div>
-        <div (click)="goToListServiceCni()">Gestion des services</div>
-        <div>Generation des statistiques</div>
+        <div (click)="goToHome()"><i class="fa fa-home"><strong>Acceuil</strong></i></div>
+        <div (click)="goToListCustomer()"><i class="fa fa-user"><strong>Gestion des clients</strong></i></div>
+        <div (click)="goToListResponsable()"><i class="fa fa-user"><strong>Gestion des responsables</strong></i></div>
+        <div (click)="goToListSubscription()"><i class="fa fa-credit-card"><strong>Gestion des abonnements</strong></i></div>
+        <div (click)="goToListClaim()"><i class="fa fa-comments"><strong>Gestion des réclamations</strong></i></div>
+        <div (click)="goToListServiceCni()"><i class="fa fa-wrench"><strong>Gestion des services</strong></i></div>
+        <div><i class="fa fa-money"><strong>Gestion des facturations</strong></i></div>
+        <div><i class="fa fa-bar-chart"><strong>Generation des statistiques</strong></i></div>
       </div>
     </div>
 
@@ -43,21 +44,3 @@
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  

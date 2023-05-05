@@ -29,6 +29,14 @@
           'make-yellow': row.status === 'En Attente'}"> {{row?.id}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="fullname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et prénom </th>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.status=== 'Traité', 'make-red': row.status === 'Refusé', 
+          'make-yellow': row.status === 'En Attente'}"> {{row?.user.firstname+' '+row?.user.lastname}} </td>
+      </ng-container>
+
+
+
       <ng-container matColumnDef="subject">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Sujet du réclamation </th>
         <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.status=== 'Traité', 'make-red': row.status === 'Refusé', 

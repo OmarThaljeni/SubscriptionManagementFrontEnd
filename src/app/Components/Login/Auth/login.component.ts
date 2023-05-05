@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/Services/AuthService/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+  failedLogin : boolean = false;
   constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder) {}
   
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(link);
       },
       error => {
+        this.failedLogin = true;
         console.log(error);
       }
     );

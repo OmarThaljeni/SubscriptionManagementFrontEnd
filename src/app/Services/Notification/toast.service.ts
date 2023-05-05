@@ -34,4 +34,24 @@ export class ToastService {
   }
 
 
+  showCannotAdd() {
+    this.show('Opération echoué vous avez atteint le nombre maximum des services!', { classname: 'bg-warning text-light', delay: 3000 ,autohide: true,horizontalPosition: 'right',
+    verticalPosition: 'top'
+});
+  }
+  
+showCannotDelete() {
+  this.show('Opération echoué tu peux pas supprimer cette abonnement ', { classname: 'bg-warning text-light', delay: 3000 ,autohide: true,horizontalPosition: 'right',
+  verticalPosition: 'top'
+});
+}
+
+showCannotAddService() {
+  this.show('Opération echoué vous étes déja abonnée a ce service ', { classname: 'bg-warning text-light', delay: 3000 ,autohide: true,horizontalPosition: 'right',
+  verticalPosition: 'top'
+});
+
+  }
+
+
 }

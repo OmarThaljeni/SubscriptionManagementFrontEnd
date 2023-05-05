@@ -22,36 +22,48 @@
 
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" #sort="matSort" multiTemplateDataRows matSort>
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID abonnement </th>
-        <td mat-cell *matCellDef="let row"> {{row?.id}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="typeSubcription">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'abonnement </th>
-        <td mat-cell *matCellDef="let row"> {{row?.typeSubcription}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.typeSubcription}} </td>
       </ng-container>
 
       <ng-container matColumnDef="idUser">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID abonné </th>
-        <td mat-cell *matCellDef="let row"> {{row?.userSet[0].id}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.userSet[0].id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="fullName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et prénom d'abonné </th>
-        <td mat-cell *matCellDef="let row"> {{row?.userSet[0].firstname +' '+row?.userSet[0].lastname}} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.userSet[0].firstname +' '+row?.userSet[0].lastname}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="adress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse d'abonné </th>
-        <td mat-cell *matCellDef="let row"> {{row?.userSet[0].adress}} </td>
+        <td mat-cell *matCellDef="let row"  [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.userSet[0].adress}} </td>
       </ng-container>
 
       <ng-container matColumnDef="nbService">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre des services </th>
-        <td mat-cell *matCellDef="let row"> {{row?.serviceCniSet.length}} </td>
+        <td mat-cell *matCellDef="let row"  [ngClass]="{'make-green': row.typeSubcription === 'Abonnement professionnel' && row.serviceCniSet.length >= 3, 'make-red': row.typeSubcription === 'Abonnement basique' && row.serviceCniSet.length >= 7, 
+          'make-yellow': row.typeSubcription === 'Abonnement normal' && row.serviceCniSet.length >= 5}" [class.example-element-row]="row.serviceCniSet?.data?.length"
+        [class.example-expanded-row]="expandedElement === row" (click)="toggleRow(row)"> {{row?.serviceCniSet.length}} </td>
       </ng-container>
 
 
@@ -64,12 +76,35 @@
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row">
-          <button class="icon-delete" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+          <button class="icon-delete" mat-icon-button color="warn"(click)="deleteSubscription(row)"><mat-icon >delete</mat-icon></button>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-      </tr>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+      <div class="example-element-detail" *ngIf="true"
+        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="inner-table mat-elevation-z8" *ngIf="true">
+          <table #innerTables mat-table [dataSource]="element.serviceCniSet" #innerSort="matSort" matSort>
+            <ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of innerDisplayedColumns">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{innerColumn}} </th>
+              <td mat-cell *matCellDef="let element"> {{element[innerColumn]}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="innerDisplayedColumns" [ngClass]="{'make-background':true}" ></tr>
+            <tr mat-row *matRowDef="let row; columns: innerDisplayedColumns;" [ngClass]="{'make-body':true}"></tr>
+          </table>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let element; columns: displayedColumns;">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+  
+
     </table>
 
     <mat-paginator [pageSizeOptions]="[7]"></mat-paginator>

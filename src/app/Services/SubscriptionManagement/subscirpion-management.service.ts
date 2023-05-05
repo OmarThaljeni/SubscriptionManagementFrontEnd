@@ -8,6 +8,9 @@ const add_subscription_url = 'http://localhost:8090/SubscriptionManagement/add-s
 
 const get_subscription_id_url = 'http://localhost:8090/SubscriptionManagement/list-subscriptions'
 
+const add_subscription_service_url = 'http://localhost:8090/SubscriptionManagement/add-subscription-user'
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +22,19 @@ export class SubscirpionManagementService {
     return this.http.get(get_list_sub_url);
   }
 
-  addSubscription(idCustomer,idService,credentials): Observable<any> {
-    return this.http.post(`${add_subscription_url}/${idCustomer}/${idService}`,credentials);
+  addSubscription(idCustomer,idService,idSubscription): Observable<any> {
+    return this.http.post(`${add_subscription_url}/${idCustomer}/${idService}/${idSubscription}`,null);
   }
+
+
 
   getAllSubscriptionByCustomer(id){
     return this.http.get(`${get_subscription_id_url}/${id}`);
   }
+
+  addSubscriptionToUser(idCustomer,idService,credentials): Observable<any> {
+    return this.http.post(`${add_subscription_service_url}/${idCustomer}/${idService}`,credentials);
+  }
+
 
 }

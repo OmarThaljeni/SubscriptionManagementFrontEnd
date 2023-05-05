@@ -15,10 +15,10 @@
       <ng-select class="custom" [items]="arrayTypeSubscription" bindLabel="name" [disabled]="true"clearAllText="Clear"
         placeholder="Type d'abonnement" [(ngModel)]="selectedTypeSubscription" [ngModelOptions]="{standalone: true}">
         <ng-template ng-label-tmp let-item="item">
-          <span>{{ item.id +'- '+item.name }}</span>
+          <span>{{ item.id +'- '+item.typeSubcription }}</span>
         </ng-template>
         <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
-          <span>{{ item.id +'- '+item.name }}</span>
+          <span>{{ item.id +'- '+item.typeSubcription }}</span>
         </ng-template>
       </ng-select>
 
@@ -36,7 +36,7 @@
 
       <br>
 
-      <ng-select class="custom" [items]="arrayService" bindLabel="service" (change)="checkValidateService()"
+      <ng-select class="custom" [items]="arrayService" bindLabel="service" (change)="checkExistsService();checkValidateService()"
         [searchFn]="customSearchFnCustomer" clearAllText="Clear" placeholder="Service" [(ngModel)]="selectedService"
         [ngModelOptions]="{standalone: true}">
         <ng-template ng-label-tmp let-item="item">

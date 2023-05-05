@@ -28,7 +28,7 @@ export interface Claims {
 export class ClaimListComponent implements OnInit {
 
   ELEMENT_DATA: Claims[];
-  displayedColumns: string[] = ['id', 'subject', 'body', 'priority','status','delete'];
+  displayedColumns: string[] = ['id','fullname', 'subject', 'body', 'priority','status','delete'];
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
