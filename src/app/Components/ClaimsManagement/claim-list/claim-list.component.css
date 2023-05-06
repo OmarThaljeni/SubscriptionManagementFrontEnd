@@ -50,3 +50,8 @@ div.main {
 .make-yellow {
     background-color: rgb(255, 253, 162)
 }
+
+.icon-update
+{
+  color: #5cb85c;
+}

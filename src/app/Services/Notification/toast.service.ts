@@ -37,21 +37,21 @@ export class ToastService {
 
 
   showCannotAdd() {
-    this.show('Opération echoué vous avez atteint le nombre maximum des services!', {
+    this.show('Opération echoué! vous avez atteint le nombre maximum des services!', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
   }
 
   showCannotDelete() {
-    this.show('Opération echoué tu peux pas supprimer cette abonnement ', {
+    this.show('Opération echoué! tu peux pas supprimer cette abonnement ', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
   }
 
   showCannotAddService() {
-    this.show('Opération echoué vous étes déja abonnée a ce service ', {
+    this.show('Opération echoué! vous étes déja abonnée a ce service ', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
@@ -59,14 +59,14 @@ export class ToastService {
 
 
   showCannotDeleteCustomer() {
-    this.show('Opération echoué tu peux pas supprimer ce client car il posséde des abonnements', {
+    this.show('Opération echoué! tu peux pas supprimer ce client car il posséde des abonnements', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
   }
 
   showCannotAcceptCustomer() {
-    this.show('Opération echoué ce client déja est accepté', {
+    this.show('Opération echoué! ce client déja est accepté', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
@@ -74,11 +74,33 @@ export class ToastService {
 
 
   showCannotOpenListSubscription() {
-    this.show('Opération echoué ce client ne posséde pas aucune abonnement', {
+    this.show('Opération echoué! ce client ne posséde pas aucune abonnement', {
       classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
       verticalPosition: 'top'
     });
   }
 
+
+  showCannoUpdateClaim() {
+    this.show('Opération echoué! cette réclamation déja traité tu ne peux pas le modifier', {
+      classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+
+  showCannoDeleteClaim() {
+    this.show('Opération echoué! cette réclamation déja traité tu ne peux pas le supprimer', {
+      classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+
+
+  showCannotTreatClaim() {
+    this.show('Opération echoué! cette réclamation déja traité', {
+      classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
 
 }

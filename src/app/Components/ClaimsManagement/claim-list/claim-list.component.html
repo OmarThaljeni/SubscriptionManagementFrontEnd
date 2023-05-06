@@ -23,6 +23,14 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
+
+
+      <ng-container matColumnDef="treatclaim">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="treatClaim(row)" mat-icon-button color="warn"><mat-icon>done_outline</mat-icon></button>
+      </ng-container>
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID réclamation </th>
         <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.status=== 'Traité', 'make-red': row.status === 'Refusé', 
@@ -61,13 +69,20 @@
             'make-yellow': row.status === 'En Attente'}"> {{row?.status}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="updateClaims(row)" class="icon-update" mat-icon-button color="warn"><mat-icon>system_update_alt</mat-icon></button>
+      </ng-container>
+
+
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-        <td mat-cell *matCellDef="let row" [ngClass]="{'make-green': row.etat === 'Traité', 'make-red': row.etat === 'Refusé', 
-          'make-yellow': row.etat === 'En Attente'}">
-          <button (click)="deleteClaims(row)" class="icon-delete" mat-icon-button color="warn"
-            [disabled]="row.status !=='En Attente'"><mat-icon>delete</mat-icon></button>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="deleteClaims(row)" class="icon-delete" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
       </ng-container>
+
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;">

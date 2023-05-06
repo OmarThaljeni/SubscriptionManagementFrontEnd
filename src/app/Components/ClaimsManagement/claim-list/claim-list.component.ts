@@ -10,6 +10,7 @@ import { ToastService } from 'src/app/Services/Notification/toast.service';
 import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManagement/subscirpion-management.service';
 import { ClaimManagementService } from 'src/app/Services/ClaimService/claim-management.service';
 import { AddClaimComponent } from '../add-claim/add-claim.component';
+import { UpdateClaimComponent } from '../update-claim/update-claim.component';
 
 export interface Claims {
   id: string;
@@ -28,7 +29,7 @@ export interface Claims {
 export class ClaimListComponent implements OnInit {
 
   ELEMENT_DATA: Claims[];
-  displayedColumns: string[] = ['id','fullname', 'subject', 'body', 'priority','status','delete'];
+  displayedColumns: string[] = ['treatclaim','id','fullname', 'subject', 'body', 'priority','status','update','delete'];
 
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -103,6 +104,9 @@ export class ClaimListComponent implements OnInit {
   };
 
   deleteClaims(row) {
+    if(row.status === 'Traité') {
+      this.toastService.showCannoDeleteClaim();
+    } else {
     this.dialogService.openConfirmDialog('Vous etes sur de supprimer cette réclamation ?')
       .afterClosed().subscribe(res => {
         if (res) {
@@ -115,8 +119,44 @@ export class ClaimListComponent implements OnInit {
             })
         }
       });
+    }
   }
 
+  updateClaims(row) {
+    if(row.status === 'Traité') {
+      this.toastService.showCannoUpdateClaim();
+    } else {
+      this.modalRef = this.modalService.open(UpdateClaimComponent, this.modalOptions); 
+      this.modalRef.componentInstance.fromParent = row;
+      this.modalRef.result.then(() => {
+      },
+      () => {
+          this.getAllClaims();
+      });
+    
+    }
+  }
+
+  treatClaim(row) {
+    if(row.status === 'Traité') {
+      this.toastService.showCannotTreatClaim();
+    } else {
+      this.dialogService.openConfirmDialog('Vous etes sur de traiter cette réclamation ?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.claimManagementService.treatClaim(row.id).subscribe(() => {
+            this.toastService.showSuccess();
+            this.getAllClaims();
+          },
+            () => {
+              this.toastService.showWarning();
+            })
+        }
+      });
+
+    }
+
+  }
 
 
 }

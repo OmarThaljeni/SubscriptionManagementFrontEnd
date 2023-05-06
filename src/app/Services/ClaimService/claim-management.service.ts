@@ -11,6 +11,7 @@ const update_claim_url = 'http://localhost:8090/SubscriptionManagement/update-cl
 
 const delete_claim_url = 'http://localhost:8090/SubscriptionManagement/delete-claim'
 
+const treat_claim_url = 'http://localhost:8090/SubscriptionManagement/treat-claim'
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,9 @@ export class ClaimManagementService {
     return this.http.put(`${update_claim_url}/${id}`, credentials);
   }
 
+  treatClaim(id): Observable<any> {
+    return this.http.put(`${treat_claim_url}/${id}`, null);
+  }
 
 
 }
