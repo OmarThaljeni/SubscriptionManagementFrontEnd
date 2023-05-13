@@ -12,6 +12,7 @@ import { AddSubscriptionComponent } from '../add-subscription/add-subscription.c
 import { AddServiceComponent } from '../add-service/add-service.component';
 import { CniService } from '../../ServiceCniManagement/list-service-cni/list-service-cni.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AddPaymentsComponent } from '../../PaymentsManagement/add-payments/add-payments.component';
 
 export interface Subscription {
   id: string;
@@ -152,6 +153,13 @@ export class ListSubscriptionComponent implements OnInit {
 
   };
   openAddPayement(row){
+    this.modalRef = this.modalService.open(AddPaymentsComponent, this.modalOptions);
+    this.modalRef.componentInstance.fromParent = row;
+    this.modalRef.result.then(() => {
+    },
+      () => {
+        this.getAllSubscription();
+      });
 
   }
 

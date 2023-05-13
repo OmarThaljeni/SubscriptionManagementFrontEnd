@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <span>{{ title }}</span>
+    <button type="button" class="btn btn-light btn-sm" (click)="close()" aria-hidden="true">
+        X
+    </button>
+</div>
+
+<div class="class-form">
+    <form class="form" [formGroup]="paiementForm" (ngSubmit)="addPayments(paiementForm.value)">
+        <br>
+        <h2>Ajout du paiement</h2>
+        <br>
+
+
+        <div class="form-group">
+
+            <div>
+                <label for="montantPaie">Montant payé: </label>
+                <input id="montantPaie" type="number" class="form-control" placeholder="Montant payé"
+                    formControlName="montantPaie" #mon />
+            </div>
+
+            <div>
+                <label for="datePayment">Date paiement: </label>
+                <input id="datePayment" type="date" class="form-control" placeholder="Date paiement"
+                    formControlName="datePayment" #dat />
+            </div>
+
+            <div>
+                <label for="observation">Observation: </label>
+                <input id="observation" type="text" class="form-control" placeholder="Observation"
+                    formControlName="observation" #obs />
+            </div>
+
+
+        </div>
+
+
+        <br>
+
+
+
+        <div class="btnPosition">
+            <button class="raised-button btn btn-secondary">
+                <h5> <i class="fa fa-plus-circle"> </i> <strong> Ajout paiement</strong></h5>
+            </button>
+        </div>
+    </form>
+    <br>
+
+
+</div>
+
+
+<!--   <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div [innerHTML]='message'>
+          </div>
+        </div>
+      </div>
+    </div>
+   -->
+<div class="modal-footer">
+    <span class="pull-right" style="padding-right:2%">
+        <button type="button" class="btn btn-light btn-sm" (click)="close()" id="btnCancel">Fermer</button>
+    </span>
+</div>

@@ -103,4 +103,20 @@ export class ToastService {
     });
   }
 
+
+
+  showCannotAddPaiement() {
+    this.show('Opération echoué! montant paié supérieur au montant total!', {
+      classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+
+  showMontantNotValid() {
+    this.show('Opération echoué! montant paié invalid!', {
+      classname: 'bg-warning text-light', delay: 3000, autohide: true, horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+
 }

@@ -3,9 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import * as $ from "jquery";
 import 'jqueryui';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/Services/Notification/toast.service';
-import { CustomerManagementService } from 'src/app/Services/CustomerManagementService/customer-management.service';
 import { ClaimManagementService } from 'src/app/Services/ClaimService/claim-management.service';
 
 

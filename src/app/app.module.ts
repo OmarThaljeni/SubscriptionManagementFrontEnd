@@ -41,6 +41,8 @@ import { UpdateClaimComponent } from './Components/ClaimsManagement/update-claim
 import { ListServiceCniComponent } from './Components/ServiceCniManagement/list-service-cni/list-service-cni.component';
 import { AddServiceCniComponent } from './Components/ServiceCniManagement/add-service-cni/add-service-cni.component';
 import { AddServiceComponent } from './Components/SubscriptionManagement/add-service/add-service.component';
+import { ListePaiementsComponent } from './Components/PaymentsManagement/liste-paiements/liste-paiements.component';
+import { AddPaymentsComponent } from './Components/PaymentsManagement/add-payments/add-payments.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { AddServiceComponent } from './Components/SubscriptionManagement/add-ser
     UpdateClaimComponent,
     ListServiceCniComponent,
     AddServiceCniComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    ListePaiementsComponent,
+    AddPaymentsComponent
   ],
   imports: [
     BrowserModule,
