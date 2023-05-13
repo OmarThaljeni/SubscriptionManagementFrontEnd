@@ -120,3 +120,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 .make-body {
     background-color: rgb(226, 226, 213)
 }
+
+.icon-payment{
+    color: #1632b1;
+}

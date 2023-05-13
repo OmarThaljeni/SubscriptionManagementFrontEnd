@@ -23,8 +23,22 @@
         </ng-template>
       </ng-select>
 
+      
       <br>
 
+      <ng-select class="custom" [items]="arrayMontantToPaie" bindLabel="name" [searchFn]="customSearchFnSubscription" clearAllText="Clear"
+      (change)="checkValideMontant()" placeholder="Montant total" [(ngModel)]="selectedMontant" [ngModelOptions]="{standalone: true}">
+      <ng-template ng-label-tmp let-item="item">
+        <span>{{ item.id +'- '+item.name }}</span>
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-index="index">
+        <span>{{ item.id +'- '+item.name }}</span>
+      </ng-template>
+    </ng-select>
+
+      
+
+      <br>
       <ng-select class="custom" [items]="arrayCustomer" bindLabel="firstname" (change)="checkValidateButtonCustomer()"
         [searchFn]="customSearchFnCustomer" clearAllText="Clear" placeholder="Client" [(ngModel)]="selectedCustomer"
         [ngModelOptions]="{standalone: true}">
@@ -54,6 +68,8 @@
     </div>
     <br>
 
+
+
     <div class="btnPosition">
       <button class="raised-button btn btn-secondary"
         [disabled]="(!isValidSelectedSubscription || !isValidSelectedCustomer)">
@@ -62,6 +78,9 @@
     </div>
   </form>
   <br>
+
+
+
 
   <div *ngIf=" !isValidSelectedCustomer && isClickedCustomer">
     <div class="alert alert-danger">
@@ -74,6 +93,13 @@
       Veuillez choisir un type d'abonnement
     </div>
   </div>
+
+  <div *ngIf=" !isValidmontantTotal && isClickedMontantTotal ">
+    <div class="alert alert-danger">
+      Veuillez choisir un montant correcte
+    </div>
+  </div>
+
 
 </div>
 

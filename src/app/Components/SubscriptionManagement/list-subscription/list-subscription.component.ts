@@ -37,7 +37,7 @@ export interface Subscription {
 export class ListSubscriptionComponent implements OnInit {
 
   ELEMENT_DATA: Subscription[];
-  displayedColumns: string[] = ['id', 'typeSubcription', 'idUser', 'fullName', 'adress', 'nbService', 'update', 'delete'];
+  displayedColumns: string[] = ['payment','id', 'typeSubcription', 'fullName', 'nbService','montant_total','rest_paye', 'update', 'delete'];
   innerDisplayedColumns: string[] = ['id', 'typeService', 'modelService', 'namePc', 'ramPc', 'cpuPc'];
   expandedElement: Subscription | null;
 
@@ -151,8 +151,13 @@ export class ListSubscriptionComponent implements OnInit {
     }
 
   };
+  openAddPayement(row){
 
+  }
 
+caluculateRestPayment(a:number, b:number) : number {
+  return a - b;
+}
 
 }
 

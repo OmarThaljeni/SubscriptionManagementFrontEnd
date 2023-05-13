@@ -24,6 +24,7 @@ export class AddSubscriptionComponent implements OnInit {
   selectedCustomer: any;
   selectedTypeSubscription: any;
   selectedService: any;
+  selectedMontant : any;
   arrayCustomer: any;
   arrayService: any;
   isValidSelectedCustomer: boolean = false;
@@ -35,6 +36,11 @@ export class AddSubscriptionComponent implements OnInit {
   isValidService: boolean = false;
   isClickedService: boolean = false;
 
+  isValidmontantTotal: boolean = false;
+  isClickedMontantTotal: boolean = false;
+
+
+  inputMontant : any;
 
   Typeabonement = new FormControl('', [Validators.required, Validators.maxLength(20)]);
 
@@ -42,6 +48,12 @@ export class AddSubscriptionComponent implements OnInit {
     { id: 1, name: 'Abonnement basique' },
     { id: 2, name: 'Abonnement professionnel' },
     { id: 3, name: 'Abonnement normal', }  ];
+
+    arrayMontantToPaie = [
+      { id: 1, name: 70 },
+      { id: 2, name: 140 },
+      { id: 3, name: 210 }  ];
+  
 
   constructor(private cniManagementService: CniManagementService,private subscriptionManagementService:SubscirpionManagementService,private customerManagementService: CustomerManagementService, private modalService: NgbModal, private activeModal: NgbActiveModal, private toastService: ToastService) { }
 
@@ -105,9 +117,11 @@ export class AddSubscriptionComponent implements OnInit {
 
 
   addSubscriptionToUserService() {
-    const subscription = {'typeSubcription':this.selectedTypeSubscription.name}
+    const subscription = {'typeSubcription':this.selectedTypeSubscription.name,'montantTotal':this.ConvertStringToNumber(this.selectedMontant.name)}
     const idCustomer = this.selectedCustomer.id;
     const idService = this.selectedService.id;
+    console.log(subscription);
+    
     let resp = this.subscriptionManagementService.addSubscriptionToUser(idCustomer,idService,subscription);
     resp.subscribe( ()=> {
       this.toastService.showSuccess();
@@ -134,10 +148,16 @@ export class AddSubscriptionComponent implements OnInit {
     this.isClickedService = true;
   }
 
-
+  checkValideMontant () {
+    this.isValidmontantTotal = this.selectedMontant ? true : false;
+    this.isClickedMontantTotal = true;
+  }
+    
+  
+   ConvertStringToNumber(input: string) {
+    var numeric = Number(input);
+    return numeric;
 }
 
 
-
-
-
+}
