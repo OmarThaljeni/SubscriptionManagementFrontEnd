@@ -105,9 +105,6 @@ export class ListServiceCniComponent implements OnInit {
 
   };
 
-  deleteClaims(row) {
-
-  }
 
 
 

@@ -1,1 +1,75 @@
-<p>liste-paiements works!</p>
+<div>
+  <app-toasts-container></app-toasts-container>
+</div>
+
+<div class="main">
+  <h1 style="color: rgb(0, 0, 0); margin-left: 30%;">Liste des paiements </h1>
+
+  <div>
+    <button class="raised-button btn btn-success">
+      <h5> <i class="fa fa-plus-circle"> </i> <strong> Ajouter paiement</strong></h5>
+    </button>
+  </div>
+  <br>
+  <form class="form" [formGroup]="filterForm" (submit)="filterByKeyWord(filterForm.value)">
+
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input id="filter" type="text" class="form-control" placeholder="Search"
+        (ngModelChange)="filterByKeyWord(filterForm.value.filter)" formControlName="filter" #filter />
+    </div>
+  </form>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID d'abonnement </th>
+        <td mat-cell *matCellDef="let row"> {{row?.subscriptions[0].id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et prénom d'abonné </th>
+        <td mat-cell *matCellDef="let row"> {{row?.subscriptions[0].userSet[0].firstname +' '+row?.subscriptions[0].userSet[0].lastname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="typeAbonnement">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'abonnement </th>
+        <td mat-cell *matCellDef="let row"> {{row?.subscriptions[0].typeSubcription}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="montantTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant total </th>
+        <td mat-cell *matCellDef="let row"> {{row?.subscriptions[0].montantTotal}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="montantPaie">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant paié </th>
+        <td mat-cell *matCellDef="let row"> {{row?.montantPaie}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="montantReste">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reste à paié </th>
+        <td mat-cell *matCellDef="let row"> {{row?.montantReste}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="datePayment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date du paiement </th>
+        <td mat-cell *matCellDef="let row"> {{row?.datePayment}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[7]"></mat-paginator>
+  </div>
+
+
+  <!-- Copyright 2019 Google Inc. All Rights Reserved.
+            Use of this source code is governed by an MIT-style license that
+            can be found in the LICENSE file at http://angular.io/license -->
+
+
+</div>

@@ -53,5 +53,9 @@ goToListServiceCni(){
   this.router.navigate(link)
 }
 
+goToListPaiements(){
+  const link = ['/SubscriptionManagement/liste-paiements'];
+  this.router.navigate(link)
+}
 
 }

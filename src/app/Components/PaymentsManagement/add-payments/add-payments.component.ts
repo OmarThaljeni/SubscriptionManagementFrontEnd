@@ -71,8 +71,6 @@ export class AddPaymentsComponent implements OnInit {
     } else if (this.fromParent.montantTotal - this.fromParent.montantPaie < credentials.montantPaie) {
       this.toastService.showCannotAddPaiement();
         } else {
-          console.log(credentials);
-          
           let resp = this.paymentsMangamentService.addPayement(id, credentials);
           resp.subscribe(() => {
             this.toastService.showSuccess();
