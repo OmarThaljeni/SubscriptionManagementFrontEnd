@@ -11,6 +11,7 @@ import { ListSubscriptionComponent } from './Components/SubscriptionManagement/l
 import { ClaimListComponent } from './Components/ClaimsManagement/claim-list/claim-list.component';
 import { ListServiceCniComponent } from './Components/ServiceCniManagement/list-service-cni/list-service-cni.component';
 import { ListePaiementsComponent } from './Components/PaymentsManagement/liste-paiements/liste-paiements.component';
+import { StatsComponent } from './Stats/stats/stats.component';
 
 const routes: Routes = [
 
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'list-claim', component:ClaimListComponent,canActivate:[AuthentificationGuard]},
       { path: 'list-service-cni', component:ListServiceCniComponent,canActivate:[AuthentificationGuard]},
       { path: 'liste-paiements', component:ListePaiementsComponent,canActivate:[AuthentificationGuard]},
+      { path: 'stats', component:StatsComponent,canActivate:[AuthentificationGuard]},
   ]},
   
 ];

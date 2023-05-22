@@ -43,6 +43,8 @@ import { AddServiceCniComponent } from './Components/ServiceCniManagement/add-se
 import { AddServiceComponent } from './Components/SubscriptionManagement/add-service/add-service.component';
 import { ListePaiementsComponent } from './Components/PaymentsManagement/liste-paiements/liste-paiements.component';
 import { AddPaymentsComponent } from './Components/PaymentsManagement/add-payments/add-payments.component';
+import { StatsComponent } from './Stats/stats/stats.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import { AddPaymentsComponent } from './Components/PaymentsManagement/add-paymen
     AddServiceCniComponent,
     AddServiceComponent,
     ListePaiementsComponent,
-    AddPaymentsComponent
+    AddPaymentsComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { AddPaymentsComponent } from './Components/PaymentsManagement/add-paymen
     MatAutocompleteModule,
     MatSelectModule,
     MatFormFieldModule,
+    ChartsModule,
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,

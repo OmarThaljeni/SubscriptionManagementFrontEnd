@@ -58,4 +58,11 @@ goToListPaiements(){
   this.router.navigate(link)
 }
 
+goToStats(){
+  const link = ['/SubscriptionManagement/stats'];
+  this.router.navigate(link)
+}
+
+
+
 }
