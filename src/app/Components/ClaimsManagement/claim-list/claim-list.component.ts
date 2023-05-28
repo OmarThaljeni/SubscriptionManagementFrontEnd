@@ -11,6 +11,7 @@ import { SubscirpionManagementService } from 'src/app/Services/SubscriptionManag
 import { ClaimManagementService } from 'src/app/Services/ClaimService/claim-management.service';
 import { AddClaimComponent } from '../add-claim/add-claim.component';
 import { UpdateClaimComponent } from '../update-claim/update-claim.component';
+import { LoginService } from 'src/app/Services/AuthService/login.service';
 
 export interface Claims {
   id: string;
@@ -51,7 +52,7 @@ export class ClaimListComponent implements OnInit {
   modalOptions: NgbModalOptions = ModalConfig;
 
 
-  constructor (private claimManagementService: ClaimManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
+  constructor (public loginService: LoginService,private claimManagementService: ClaimManagementService, private modalService: NgbModal, private dialogService: DialogService, private toastService: ToastService, private formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource();
   }
 

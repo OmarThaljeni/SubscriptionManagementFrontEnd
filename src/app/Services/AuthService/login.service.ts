@@ -34,4 +34,10 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
+  getRoles(){
+    let role = localStorage.getItem('id_roles');
+    return role;
+  }
+
+
 }

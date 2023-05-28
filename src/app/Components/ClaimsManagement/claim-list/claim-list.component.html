@@ -3,7 +3,9 @@
 </div>
 
 <div class="main">
-  <h1 style="color: rgb(0, 0, 0); margin-left: 30%;">Liste des réclamations </h1>
+  <h1 *ngIf="loginService.getRoles() == '3' || loginService.getRoles() == '2'" style="color: rgb(0, 0, 0); margin-left: 30%;">Liste des réclamations </h1>
+
+  <h1 *ngIf="loginService.getRoles() == '1'" style="color: rgb(0, 0, 0); margin-left: 30%;">Mes réclamations </h1>
 
   <div>
     <button class="raised-button btn btn-success" (click)="openAddClaimsModal()">
